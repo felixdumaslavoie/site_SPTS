@@ -67,6 +67,10 @@ export default function Home() {
         </h3>
         </header>
 
+      <section>
+        <h6 className='hidden'>Intro</h6>
+        <p>Le collectif SPTS est un regroupement interrégional d’étudiant.e.s qui militent pour combattre les inégalités et les oppressions vécues par la classe étudiante, spécifiquement en lien avec le travail gratuit effectué en stage non salarié.</p>
+      </section>
 
 
        
