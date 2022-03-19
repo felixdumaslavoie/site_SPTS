@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/index.module.scss'
+import styles from '../styles/principale.module.scss'
+import Link from 'next/link'
 
 
 export default function Home() {
@@ -15,11 +16,19 @@ export default function Home() {
       <main className={styles.main}>
         <div className='mainMenu'>
           <ul>
-            <li><a>Accueil</a></li>
-            <li><a>Matériel</a></li>
-            <li><a>Historique</a></li>
-            <li><a>Évenements</a></li>
-            <li><a>Appuis</a></li>
+            <li className='detail_color'>
+              <Link href="/">
+                <a>Accueil</a>
+              </Link></li>
+              <li className='sub1_color'>
+              <Link href="/materiel">
+                <a>Matériel</a>
+              </Link></li>
+            <li className='feminist_color'><a>Historique</a></li>
+            <li className='sub1_color'><a>Évenements</a></li>
+            <li className='feminist_color'><a>Archives</a></li>
+            <li className='sub1_color'><a>Appuis</a></li>
+            <li className='detail_color'><a>Contact</a></li>
           </ul>
         </div>
         <header className='header'>
