@@ -36,7 +36,7 @@ export default function Home() {
             <li className='sub1_color'><Link href="/appuis">
                 <a>Appuis</a>
               </Link></li>
-            <li className='detail_color'><Link href="/contacts">
+            <li className='detail_color'><Link href="/contact">
                 <a>Contact</a>
               </Link></li>
           </ul>
