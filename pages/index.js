@@ -18,17 +18,27 @@ export default function Home() {
           <ul>
             <li className='detail_color'>
               <Link href="/">
-                <a>Accueil</a>
+                <a className='selected'>Accueil</a>
               </Link></li>
               <li className='sub1_color'>
               <Link href="/materiel">
                 <a>Matériel</a>
               </Link></li>
-            <li className='feminist_color'><a>Historique</a></li>
-            <li className='sub1_color'><a>Évenements</a></li>
-            <li className='feminist_color'><a>Archives</a></li>
-            <li className='sub1_color'><a>Appuis</a></li>
-            <li className='detail_color'><a>Contact</a></li>
+            <li className='feminist_color'><Link href="/historique">
+                <a>Historique</a>
+              </Link></li>
+            <li className='sub1_color'><Link href="/evenements">
+                <a>Évenements</a>
+              </Link></li>
+            <li className='feminist_color'><Link href="/archives">
+                <a>Archives</a>
+              </Link></li>
+            <li className='sub1_color'><Link href="/appuis">
+                <a>Appuis</a>
+              </Link></li>
+            <li className='detail_color'><Link href="/contacts">
+                <a>Contact</a>
+              </Link></li>
           </ul>
         </div>
         <header className='header'>
