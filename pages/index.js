@@ -17,7 +17,9 @@ export default function Home() {
           <ul>
             <li><a>Accueil</a></li>
             <li><a>Matériel</a></li>
+            <li><a>Historique</a></li>
             <li><a>Évenements</a></li>
+            <li><a>Appuis</a></li>
           </ul>
         </div>
         <header className='header'>
