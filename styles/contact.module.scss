@@ -1,0 +1,129 @@
+@import "mixins";
+
+
+.contactBox {
+    
+    background-color: lightgrey;
+    width: auto;
+    border: 15px solid $nice_color;
+    padding: 20px 100px;
+    margin: 20px;
+
+    color: $sub1_color;
+    font-family: 'texGyre', sans-serif;
+    font-size: 25px;
+    margin: 0 10em;
+    margin-top: 50px;
+    text-align: left;
+    text-justify: inter-word;
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        list-style-type: none;
+        
+        li {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+       } 
+    }
+    @keyframes slide-in-elliptic-top-fwd{0%{transform:translateY(-600px) rotateX(-30deg) scale(0);transform-origin:50% 100%;opacity:0}100%{transform:translateY(0) rotateX(0) scale(1);transform-origin:50% 1400px;opacity:1}}
+    animation:slide-in-elliptic-top-fwd .7s cubic-bezier(.25,.46,.45,.94) both;
+    animation-delay: 1s;
+}
+
+.alone {
+    margin: 0 150px;
+    margin-left: 0;
+}
+
+.underline {
+    @keyframes surlignage_in {from {border-bottom: 2px solid $nice_color;} to {border-bottom: 2px solid $detail_color;}}
+    @keyframes surlignage_out {from {border-bottom: 2px solid $detail_color;} to {border-bottom: 2px solid $nice_color;} }
+    border-bottom: 2px solid $nice_color;
+
+    animation: surlignage_out .7s cubic-bezier(.25,.46,.45,.94) both;
+    &:hover {
+    animation-direction: normal;
+    animation: surlignage_in .7s cubic-bezier(.25,.46,.45,.94) both;
+    }
+}
+
+
+
+.container {
+    padding: 0 2rem;
+    background-image: url(../public/textureFabric.png);
+} 
+  
+  .main {
+    min-height: 100vh;
+    padding: 2rem 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+
+  
+  .title a {
+    color: #0070f3;
+    text-decoration: none;
+  }
+  
+  .title a:hover,
+  .title a:focus,
+  .title a:active {
+    text-decoration: underline;
+  }
+  
+  .title {
+    margin: 0;
+    line-height: 1.15;
+    font-size: 4rem;
+  }
+
+  .title,
+  .description {
+    text-align: center;
+  }
+  
+  .description {
+    margin: 4rem 0;
+    line-height: 1.5;
+    font-size: 1.5rem;
+  }
+  
+  .logo {
+    height: 1em;
+    margin-left: 0.5rem;
+  }
+
+  .footer {
+    display: flex;
+    flex: 1;
+    padding: 2rem 0;
+    border-top: 1px solid #eaeaea;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .footer a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+  }
+  
+  @media (max-width: 600px) {
+    .grid {
+      width: 100%;
+      flex-direction: column;
+    }
+  }
+  

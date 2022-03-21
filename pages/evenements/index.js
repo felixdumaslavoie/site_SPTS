@@ -1,23 +1,22 @@
 import Head from 'next/head'
-import styles from '../styles/principale.module.scss'
+import styles from '../../styles/evenements.module.scss'
 import Link from 'next/link'
 
-
-export default function Home() {
+export default function Evenements() {
   return (
-    <div className={styles.container}>
+<div className={styles.container}>
       <Head>
-        <title>Collectif SPTS: un salaire pour toustes les stagiaires!</title>
-        <meta name="description" content="Collectif SPTS: un salaire pour toustes les stagiaires" />
+        <title>Collectif SPTS: Les évenements organisés par le collectif</title>
+        <meta name="description" content="Collectif un salaire pour toustes les stagiaires" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
-        <div className='mainMenu'>
+      <div className='mainMenu'>
           <ul>
             <li className='detail_color'>
               <Link href="/">
-                <a className='selected'>Accueil</a>
+                <a>Accueil</a>
               </Link></li>
               <li className='sub1_color'>
               <Link href="/materiel">
@@ -27,7 +26,7 @@ export default function Home() {
                 <a>Historique</a>
               </Link></li>
             <li className='sub1_color'><Link href="/evenements">
-                <a>Évenements</a>
+                <a className='selected'>Évenements</a>
               </Link></li>
             <li className='nice_color'><Link href="/archives">
                 <a>Archives</a>
@@ -40,37 +39,30 @@ export default function Home() {
               </Link></li>
           </ul>
         </div>
-        <header className='header'>
-        <h1 className={styles.title}>
+        <header className='header_subsections_center'>
+        <h1 className='headerh1blue'>
 
         <div className='header_underline'>
-          <span>C</span>
-          <span>o</span>
-          <span>l</span>
-          <span>l</span>
+          <span>É</span>
+          <span>v</span>
           <span>e</span>
-          <span>c</span>
+          <span>n</span>
+          <span>e</span>
+          <span>m</span>
+          <span>e</span>
+          <span>n</span>
           <span>t</span>
-          <span>i</span>
-          <span>f</span>
-        </div>
-        <div className='header_mauve'>
-          <span> </span>
-          <span>S</span>
-          <span>P</span>
-          <span>T</span>
-          <span>S</span>
-          <span> </span>
+          <span>s</span>
         </div>
         </h1>
-        <h3>
-          Un <span className='detail_color'>s</span>alaire <span className='nice_color'>p</span>our <span className='base_color'>t</span>oustes les <div className='header_underline'><span className='detail_color'>s</span>tagiaires!</div> 
-        </h3>
+        <h5>
+          en cours d&apos;<div className='header_underline'>organisation!</div> 
+        </h5>
         </header>
 
-      <section>
-        <h6 className='hidden'>Intro</h6>
-        <p>Le collectif SPTS est un regroupement interrégional d’étudiant.e.s qui militent pour combattre les inégalités et les oppressions vécues par la classe étudiante, spécifiquement en lien avec le travail gratuit effectué en stage non salarié.</p>
+        <section>
+        <h6 className='hidden'>Work in progress</h6>
+        <p>Api en développement... :)</p>
       </section>
 
 

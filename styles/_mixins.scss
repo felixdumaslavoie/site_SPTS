@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Asap:ital,wght@1,500&display=swap');
+
+$base_color:      #c6538c;
+$detail_color:    #BDAD62; 
+$important_color: #4FA66A; 
+$nice_color:  #523570; 
+$sub1_color:      #3e3e3e;
+
+@font-face {
+  font-family: 'texGyre';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('texGyre'), url(../fonts/texgyre_bold.woff) format('woff');
+}
+
+// COLORS
+.base_color {
+    color: $base_color;
+  }
+  
+  .detail_color {
+    color: $detail_color;
+  }
+  
+  .important_color {
+    color: $important_color;
+  }
+  
+  .nice_color {
+    color: $nice_color;
+  }
+  
+  .sub1_color {
+    color: $sub1_color;
+  }

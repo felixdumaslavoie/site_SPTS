@@ -1,23 +1,22 @@
 import Head from 'next/head'
-import styles from '../styles/principale.module.scss'
+import styles from '../../styles/contact.module.scss'
 import Link from 'next/link'
 
-
-export default function Home() {
+export default function Contact() {
   return (
-    <div className={styles.container}>
+<div className={styles.container}>
       <Head>
-        <title>Collectif SPTS: un salaire pour toustes les stagiaires!</title>
-        <meta name="description" content="Collectif SPTS: un salaire pour toustes les stagiaires" />
+        <title>Collectif SPTS: Contact</title>
+        <meta name="description" content="Collectif un salaire pour toustes les stagiaires" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
-        <div className='mainMenu'>
+      <div className='mainMenu'>
           <ul>
             <li className='detail_color'>
               <Link href="/">
-                <a className='selected'>Accueil</a>
+                <a>Accueil</a>
               </Link></li>
               <li className='sub1_color'>
               <Link href="/materiel">
@@ -36,44 +35,37 @@ export default function Home() {
                 <a>Appuis</a>
               </Link></li>
             <li className='detail_color'><Link href="/contact">
-                <a>Contact</a>
+                <a className='selected'>Contact</a>
               </Link></li>
           </ul>
         </div>
-        <header className='header'>
+        <header className='headerh1gold'>
         <h1 className={styles.title}>
 
         <div className='header_underline'>
           <span>C</span>
           <span>o</span>
-          <span>l</span>
-          <span>l</span>
-          <span>e</span>
+          <span>n</span>
+          <span>t</span>
+          <span>a</span>
           <span>c</span>
           <span>t</span>
-          <span>i</span>
-          <span>f</span>
-        </div>
-        <div className='header_mauve'>
-          <span> </span>
-          <span>S</span>
-          <span>P</span>
-          <span>T</span>
-          <span>S</span>
-          <span> </span>
         </div>
         </h1>
         <h3>
-          Un <span className='detail_color'>s</span>alaire <span className='nice_color'>p</span>our <span className='base_color'>t</span>oustes les <div className='header_underline'><span className='detail_color'>s</span>tagiaires!</div> 
+          Pour (re)joindre le <div className='header_underline'>collectif:</div> 
         </h3>
+
         </header>
 
-      <section>
-        <h6 className='hidden'>Intro</h6>
-        <p>Le collectif SPTS est un regroupement interrégional d’étudiant.e.s qui militent pour combattre les inégalités et les oppressions vécues par la classe étudiante, spécifiquement en lien avec le travail gratuit effectué en stage non salarié.</p>
+        <section className={styles.contactBox}>
+        <h6 className='hidden'>Contact</h6>
+        <ul>
+          <li><div className={styles.alone}>Courriel </div> <a className={styles.underline} href="mailto:collectifspts@gmail.com"><span className='nice_color'> collectifspts@gmail.com</span></a></li>
+          <li>Facebook <a target="_blank" rel='noreferrer' href='https://www.facebook.com/collectif.spts'><img src="/facebook_icon.svg" alt="Lien vers la page facebook" width={100} height={100} /></a></li>
+          <li>Instagram <a target="_blank" rel='noreferrer' href='https://www.instagram.com/collectif.spts'><img src="/instagram_icon.svg" alt="Lien vers la page instagram" width={100} height={100} /></a></li>
+        </ul>
       </section>
-
-
        
       </main>
 

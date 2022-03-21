@@ -1,0 +1,247 @@
+@import "mixins";
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+/* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;*/
+    font-family: DM Sans,sans-serif;
+    font-size: 1.6rem;
+    color: #fff;
+    line-height: 1.5;
+}
+
+
+.mainMenu {
+  width: 100vw;
+  height: 48px;
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  background-image: url('../public/textureWebMixed.png');
+  @keyframes wobble-hor-bottom{0%,100%{transform:translateX(0);transform-origin:50% 50%}15%{transform:translateX(-30px) rotate(-6deg)}30%{transform:translateX(15px) rotate(6deg)}45%{transform:translateX(-15px) rotate(-3.6deg)}60%{transform:translateX(9px) rotate(2.4deg)}75%{transform:translateX(-6px) rotate(-1.2deg)}}
+  animation:wobble-hor-bottom 2.5s both;
+  animation-delay: 20s;
+  
+  ul {
+    padding: 0;
+    padding-top: 3px;
+    padding-right: 45px;
+    display: flex;
+    justify-content: center;
+    color: $sub1_color;
+    font-family: 'texGyre', sans-serif;
+    font-size: 1rem;
+    text-decoration: none;
+    list-style-type: none;
+    margin: 0;
+    
+    li {
+      cursor: pointer;
+      margin: 0 20px;
+
+      a {
+        opacity: 0.95;
+        text-decoration: underline 0.15em rgba(255, 255, 255, 0);
+        transition: text-decoration-color 250ms;
+        
+        &.selected {
+          text-decoration: underline 0.15em;
+        }
+      }
+      
+      a:hover, a:focus {
+        opacity: 1;
+        text-decoration-color: $sub1_color;
+        
+      }
+    }
+  }
+}
+
+
+header {
+  padding: 30px 0;
+  padding-top: 80px;
+  padding-bottom: 65px;
+  position: relative;
+
+  &:after {
+    content:'';
+    position: absolute;
+    background-color: $sub1_color;
+    width: 30%;
+    height: 3px;
+    bottom: 0;
+    left: 50%;
+    @keyframes superBorder { 0% { width: 0; } 100% { width: 30%; } }
+    animation: superBorder 3s cubic-bezier(.215,.61,.355,1.000) both;
+    transform: translate(-50%, -50%);
+  }
+  h1 {
+    font-family: 'Asap', sans-serif;
+    font-weight: 700;
+    color: $base_color;
+    font-size: 6.6vw;
+    line-height: 1;
+    @keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}
+    animation:tracking-in-expand 1s cubic-bezier(.215,.61,.355,1.000) both;
+
+    &.headerh1blue {
+      color: $nice_color;
+    }
+
+    &.headerh1gold {
+      color: $detail_color;
+    }
+  }
+  h3, h5 {
+    color: $sub1_color;
+    font-family: 'texGyre', sans-serif;
+    margin: 0;
+    @keyframes focus-in-contract{0%{letter-spacing:0.2em;filter:blur(12px);opacity:0}100%{filter:blur(0);opacity:1}}
+    animation: focus-in-contract .7s cubic-bezier(.25,.46,.45,.94) both;
+  }
+
+  &.header_subsections {
+    padding: 80px 4em;
+    padding-bottom: 20px;
+
+    h1 {
+      font-size: 50px;
+      margin: 8px 0;
+    }
+
+    &:after { 
+      left: auto;
+      transform: none;
+    }
+  }
+
+  &.header_subsections_right {
+    padding: 80px 4em;
+    padding-bottom: 20px;
+    text-align: right;
+
+    h1 {
+      font-size: 50px;
+      margin: 8px 0;
+    }
+
+    &:after {
+      left: auto; 
+      right: 4em;
+      transform: none;
+    }
+  }
+
+  &.header_subsections_center {
+    padding: 80px 4em;
+    padding-bottom: 20px;
+    text-align: center;
+
+    h1 {
+      font-size: 50px;
+      margin: 8px 0;
+    }
+  }
+
+  
+  .header_underline {
+    display: inline-block;
+    position: relative;
+    
+    &:after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: $detail_color;
+      transform-origin: bottom right;
+      transition: transform 0.25s ease-out;
+    }
+    &:hover:after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+  }
+
+  .header_mauve {
+    color: $nice_color;
+    display: inline;
+  }
+}
+
+section {
+  padding: 40px 0;
+
+  @keyframes tracking-in-contract-bck-bottom{0%{letter-spacing:1em;transform:translateZ(400px) translateY(300px);opacity:0}40%{opacity:.6}100%{transform:translateZ(0) translateY(0);opacity:1}}
+  animation:tracking-in-contract-bck-bottom 1s cubic-bezier(.215,.61,.355,1.000) both;
+  animation-delay: 1s;
+
+  p {
+    color: $sub1_color;
+    font-family: 'texGyre', sans-serif;
+    font-size: 25px;
+    margin: 0 10em;
+    text-align: justify;
+    text-justify: inter-word;
+  }
+}
+
+.hidden {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  padding: 0 2rem;
+  background-image: url(../public/textureFabric.png);
+}
+
+footer {
+  padding: 20px 0;
+  color: $detail_color;
+  font-family: 'texGyre', sans-serif;
+  font-size: 15px;
+
+  ul {
+    padding: 0 20px;
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    margin: 0;
+    margin-bottom: 5px;
+
+    li {
+      margin-right: 20px;
+      span {
+        color: $sub1_color;
+      }
+    }
+    
+  }
+
+
+  a {
+    color: $sub1_color;
+    font-family: 'texGyre', sans-serif;
+    font-size: 15px;  
+    text-align: justify;
+    text-justify: inter-word;
+  }
+}
