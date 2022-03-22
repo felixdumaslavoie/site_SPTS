@@ -1,10 +1,21 @@
 import Head from 'next/head'
 import styles from '../styles/principale.module.scss'
 import Link from 'next/link'
-
+import Script from 'next/script'
 
 export default function Home() {
   return (
+    <>
+    <Script
+      id="onload-id"
+      src="/scripts/main.js"
+      onLoad={() => {
+        window.onscroll = function() {
+          growShrinkLogo()
+        };
+      }}
+    />
+  
     <div className={styles.container}>
       <Head>
         <title>Collectif SPTS: un salaire pour toustes les stagiaires!</title>
@@ -13,8 +24,11 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+        
         <div className='mainMenu'>
+        
           <ul>
+            <li><Link href="/"><a><div id='logo'></div></a></Link></li>
             <li className='detail_color'>
               <Link href="/">
                 <a className='selected'>Accueil</a>
@@ -90,5 +104,5 @@ export default function Home() {
         </ul>
       </footer>
     </div>
-  )
+    </>)
 }

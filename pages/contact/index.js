@@ -1,9 +1,19 @@
 import Head from 'next/head'
 import styles from '../../styles/contact.module.scss'
 import Link from 'next/link'
+import Script from 'next/script'
 
 export default function Contact() {
   return (
+    <>
+    <Script
+      src="/scripts/main.js"
+      onLoad={() => {
+        window.onscroll = function() {
+          growShrinkLogo()
+        };
+      }}
+    />
 <div className={styles.container}>
       <Head>
         <title>Collectif SPTS: Contact</title>
@@ -14,6 +24,7 @@ export default function Contact() {
       <main className={styles.main}>
       <div className='mainMenu'>
           <ul>
+            <li><Link href="/"><a><div id='logo'></div></a></Link></li>
             <li className='detail_color'>
               <Link href="/">
                 <a>Accueil</a>
@@ -82,5 +93,5 @@ export default function Contact() {
         </ul>
       </footer>
     </div>
-  )
+    </>)
 }

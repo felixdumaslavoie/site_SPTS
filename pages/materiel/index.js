@@ -1,10 +1,21 @@
 import Head from 'next/head'
 import styles from '../../styles/materiel.module.scss'
 import Link from 'next/link'
+import Script from 'next/script'
 
 export default function Materiel() {
   return (
-<div className={styles.container}>
+    <>
+    <Script
+      src="/scripts/main.js"
+      onLoad={() => {
+        window.onscroll = function() {
+          growShrinkLogo()
+        };
+      }}
+    />
+
+    <div className={styles.container}>
       <Head>
         <title>Collectif SPTS: Matériel</title>
         <meta name="description" content="Collectif un salaire pour toustes les stagiaires" />
@@ -14,6 +25,7 @@ export default function Materiel() {
       <main className={styles.main}>
       <div className='mainMenu'>
           <ul>
+            <li><Link href="/"><a><div id='logo'></div></a></Link></li>
             <li className='detail_color'>
               <Link href="/">
                 <a>Accueil</a>
@@ -77,5 +89,5 @@ export default function Materiel() {
         </ul>
       </footer>
     </div>
-  )
+    </>)
 }

@@ -12,6 +12,23 @@ body {
     line-height: 1.5;
 }
 
+#logo {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    background-image: url(/logo.png);
+    background-size: cover;
+    left: 0;
+    top: -30px;
+    z-index: 200;
+    @keyframes scale-up-top{0%{transform:scale(.5);transform-origin:50% 0}100%{transform:scale(1);transform-origin:50% 0}}
+    animation:scale-up-top .4s cubic-bezier(.39,.575,.565,1.000) both;
+    
+    &.smallLogo {
+      @keyframes scale-down-top{0%{transform:scale(1);transform-origin:50% 0}100%{transform:scale(.5);transform-origin:50% 0}}
+      animation:scale-down-top .4s cubic-bezier(.25,.46,.45,.94) both;
+    }
+}
 
 .mainMenu {
   width: 100vw;

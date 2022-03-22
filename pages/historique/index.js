@@ -1,9 +1,19 @@
 import Head from 'next/head'
 import styles from '../../styles/materiel.module.scss'
 import Link from 'next/link'
+import Script from 'next/script'
 
 export default function Historique() {
   return (
+    <>
+    <Script
+      src="/scripts/main.js"
+      onLoad={() => {
+        window.onscroll = function() {
+          growShrinkLogo()
+        };
+      }}
+    />
 <div className={styles.container}>
       <Head>
         <title>Collectif SPTS: Historique de la lutte en cours...</title>
@@ -14,6 +24,7 @@ export default function Historique() {
       <main className={styles.main}>
       <div className='mainMenu'>
           <ul>
+            <li><Link href="/"><a><div id='logo'></div></a></Link></li>
             <li className='detail_color'>
               <Link href="/">
                 <a>Accueil</a>
@@ -78,5 +89,5 @@ export default function Historique() {
         </ul>
       </footer>
     </div>
-  )
+    </>)
 }
