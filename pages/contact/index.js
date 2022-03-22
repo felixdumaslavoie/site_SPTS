@@ -58,7 +58,7 @@ export default function Contact() {
 
         </header>
 
-        <section className={styles.contactBox}>
+      <section className={styles.contactBox}>
         <h6 className='hidden'>Contact</h6>
         <ul>
           <li><div className={styles.alone}>Courriel </div> <a className={styles.underline} href="mailto:collectifspts@gmail.com"><span className='nice_color'> collectifspts@gmail.com</span></a></li>
