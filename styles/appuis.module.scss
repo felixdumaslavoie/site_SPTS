@@ -1,6 +1,30 @@
 @import "mixins";
 
 
+.lesAppuis {
+  color: $sub1_color;
+  font-family: 'texGyre', sans-serif;
+  font-size: 25px;
+  margin: 0 10em;
+  margin-top: 50px;
+  text-align: left;
+  text-justify: inter-word;
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding-left: 1.2rem;
+
+    li {
+      position: relative;
+      padding-left: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+}
+
+
 .container {
     background-image: url(../public/textureFabric.png);
 }

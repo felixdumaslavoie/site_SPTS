@@ -1,11 +1,9 @@
 
 
-var Logo = document.getElementById("logo");
-var endOfDocumentTop = 150;
-var size = 0;
 
-function growShrinkLogo() {
+export const growShrinkLogoScript = (Logo, endOfDocumentTop, size) => {
   let scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+  console.log("scroll:" + scroll)
 
   if (size == 0 && scroll > endOfDocumentTop) {
     Logo.className = 'smallLogo';
@@ -15,3 +13,6 @@ function growShrinkLogo() {
    size = 0;
   }
 }
+
+
+

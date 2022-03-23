@@ -1,23 +1,50 @@
 import Head from 'next/head'
 import styles from '../../styles/contact.module.scss'
 import Link from 'next/link'
-import Script from 'next/script'
+import { useEffect } from 'react'
 
 export default function Contact() {
+  var Logo = undefined;
+  var endOfDocumentTop = undefined;
+  var size = undefined;
+
+  useEffect(() => {
+    if (Logo === undefined || endOfDocumentTop === undefined || size === undefined ) {
+      Logo = document.getElementById("logo");
+      endOfDocumentTop = 150;
+      size = 0;
+    }
+
+    window.onscroll = function() {
+      let scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    
+      if (size == 0 && scroll > endOfDocumentTop) {
+        Logo.className = 'smallLogo';
+        size = 1;
+      } else if(size == 1 && scroll <= endOfDocumentTop){
+        Logo.className = 'largeLogo';
+       size = 0;
+      }};
+
+  }, []);
+  
+
+
+
+
+ 
   return (
     <>
-    <Script
-      src="/scripts/main.js"
-      onLoad={() => {
-        window.onscroll = function() {
-          growShrinkLogo()
-        };
-      }}
-    />
+ 
 <div className={styles.container}>
       <Head>
         <title>Collectif SPTS: Contact</title>
-        <meta name="description" content="Collectif un salaire pour toustes les stagiaires" />
+        <meta property="og:title" content="Collectif SPTS: Contact" />
+        <meta property="og:url" content="https://collectifspts.org/contact"/>  
+        <meta property="og:image" content="/thumbnails/contact.jpg"/>
+        <meta property="og:type" content="website"/>  
+        <meta property="og:description" content="Pour rejoindre le collectif"/> 
+        <meta name="description" content="Pour joindre, entrer en contact avec le collectif un salaire pour toustes les stagiaires..." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

@@ -1,5 +1,9 @@
 @import "mixins";
 
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
 html,
 body {
   padding: 0;
@@ -53,6 +57,7 @@ body {
     text-decoration: none;
     list-style-type: none;
     margin: 0;
+    height: 20px;
     
     li {
       cursor: pointer;
