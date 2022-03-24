@@ -117,6 +117,7 @@ const Post = () => {
           md = new MarkdownIt();
           let result = md.render(texteMD);
           $('#texteContenu').html(result);
+          //$('#texteContenu').find("a").attr() https://stackoverflow.com/questions/20354276/adding-attribute-to-link-via-jquery
         }
       },
       error: function (err) {
