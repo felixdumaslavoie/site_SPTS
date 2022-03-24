@@ -1,0 +1,126 @@
+@import "mixins";
+
+.headerTitre {
+    color: $nice_color;
+}
+
+.headerDate {
+    margin: 0%;
+    color: $sub1_color;
+    font-family: 'Asap', sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+}
+
+.autrices {
+    padding: 0;
+    h5 {
+        margin: 0;
+        margin-top: 15px;
+        ul {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+            color: $sub1_color;
+            font-family: 'texGyre', sans-serif;
+            font-size: 25px;
+            margin: 0 10em;
+            text-align: left;
+            text-justify: inter-word;
+            
+            li {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    &:after {
+        content: "";
+        position: absolute;
+        background-color: #3e3e3e;
+        width: 30%;
+        height: 3px;
+        bottom: -15px;
+        left: 50%;
+        -webkit-animation: superBorder 3s cubic-bezier(0.215, 0.61, 0.355, 1) both;
+        animation: superBorder 3s cubic-bezier(0.215, 0.61, 0.355, 1) both;
+        transform: translate(-50%, -50%);
+    }
+}
+
+
+.container {
+    background-image: url(../public/textureFabric.png);
+}
+  
+  .main {
+    min-height: 100vh;
+    padding: 2rem 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: left;
+  }
+
+  
+  
+  .title a {
+    color: #0070f3;
+    text-decoration: none;
+  }
+  
+  .title a:hover,
+  .title a:focus,
+  .title a:active {
+    text-decoration: underline;
+  }
+  
+  .title {
+    margin: 0;
+    line-height: 1.15;
+    font-size: 4rem;
+  }
+
+  .title,
+  .description {
+    text-align: center;
+  }
+  
+  .description {
+    margin: 4rem 0;
+    line-height: 1.5;
+    font-size: 1.5rem;
+  }
+  
+  .logo {
+    height: 1em;
+    margin-left: 0.5rem;
+  }
+
+  .footer {
+    display: flex;
+    flex: 1;
+    padding: 2rem 0;
+    border-top: 1px solid #eaeaea;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .footer a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+  }
+  
+  @media (max-width: 600px) {
+    .grid {
+      width: 100%;
+      flex-direction: column;
+    }
+  }
+  
+  

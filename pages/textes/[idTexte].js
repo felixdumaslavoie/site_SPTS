@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import styles from '../../styles/appuis.module.scss'
+import styles from '../../styles/textes.module.scss'
 import Link from 'next/link'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
@@ -100,7 +100,20 @@ const Post = () => {
         {
           i -= 1; // On revient une case avant pour bien se positionner...
           finalArray = finalArray.splice(i, 5) // On coupe pour ne garder que le bon texte
-          $('meta[name=author]').attr('content', 'New Author Name');
+          console.log(finalArray)
+          let titre = finalArray[0];
+          let autrices = finalArray[2].split(';')
+          let date = finalArray[3]
+          let texteMD = finalArray[4]
+          $('#txtTitre').html(titre)
+          let lesAutrices = "";
+          autrices.forEach(element => lesAutrices += ("<li>" + element + "</li>"));
+          $('#txtAutrices').html(lesAutrices)
+          $('#txtDate').html("Publié le " + date);
+          var showdown = require('showdown')
+          var converter = new showdown.Converter();
+          var texteHTML = converter.makeHtml(texteMD);
+          $('#texteContenu').html(texteHTML);
         }
       },
       error: function (err) {
@@ -162,26 +175,23 @@ const Post = () => {
               </Link></li>
             </ul>
           </div>
-          <header className='header_subsections_right'>
-            <h1 className='headerh1blue'>
-
-              <div className='header_underline'>
-                <span>T</span>
-                <span>e</span>
-                <span>x</span>
-                <span>t</span>
-                <span>e</span>
-                <span>s</span>
-              </div>
+          <header className='header_subsections_center'>
+            <h1 id='txtTitre' className={styles.headerTitre}>
+              <span className='detail_color'>Chargement...</span>
             </h1>
-            <h5>
-              Organismes qui appuient nos <div className='header_underline'>revendications</div>
-            </h5>
+            <p id='txtDate' className={styles.headerDate}></p>
           </header>
 
-          <section className={styles.lesAppuis}>
-            <ul id='appuis'>
-            </ul>
+          <section className={styles.autrices}>
+          <h5>
+              <ul id='txtAutrices'>
+                
+              </ul>
+          </h5>
+          </section>
+
+          <section id='texteContenu' className={styles.leTexte}>
+
           </section>
 
 
