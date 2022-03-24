@@ -8,10 +8,18 @@ $sub1_color:      #3e3e3e;
 
 @font-face {
   font-family: 'texGyre';
-  font-style: normal;
+  font-style: bold;
   font-weight: 700;
   font-display: swap;
   src: local('texGyre'), url(../fonts/texgyre_bold.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'texGyreRegular';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('texGyre'), url(../fonts/texgyre_regular.woff) format('woff');
 }
 
 // COLORS

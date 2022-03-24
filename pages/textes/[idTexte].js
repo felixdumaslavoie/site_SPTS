@@ -52,6 +52,8 @@ const Post = () => {
       
         item = data.split(String.fromCharCode(9));
 
+        console.log(item)
+
         var finalArray = [];
         const stringD = "^\r\n";
         const stringF = "\r\n$";
@@ -100,25 +102,28 @@ const Post = () => {
         {
           i -= 1; // On revient une case avant pour bien se positionner...
           finalArray = finalArray.splice(i, 5) // On coupe pour ne garder que le bon texte
-          console.log(finalArray)
+          //console.log(finalArray)
           let titre = finalArray[0];
           let autrices = finalArray[2].split(';')
           let date = finalArray[3]
           let texteMD = finalArray[4]
-          $('#txtTitre').html(titre)
+          $('#txtTitre').html(titre);
           let lesAutrices = "";
           autrices.forEach(element => lesAutrices += ("<li>" + element + "</li>"));
           $('#txtAutrices').html(lesAutrices)
           $('#txtDate').html("Publié le " + date);
-          var showdown = require('showdown')
-          var converter = new showdown.Converter();
-          var texteHTML = converter.makeHtml(texteMD);
-          $('#texteContenu').html(texteHTML);
+
+          var MarkdownIt = require('markdown-it'),
+          md = new MarkdownIt();
+          let result = md.render(texteMD);
+          $('#texteContenu').html(result);
         }
       },
       error: function (err) {
         console.log(err.status);
-        console.log("erreur dans la recherche du texte");
+        let string = "erreur dans la recherche du texte";
+        console.log(string);
+        $('#texteContenu').html(string);
       }
     });
   }

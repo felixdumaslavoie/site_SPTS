@@ -1,4 +1,40 @@
 @import "mixins";
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@1,300&display=swap');
+
+
+
+.leTexte {
+    p {
+        margin-top: 70px;
+        line-height: 50px;
+    }
+
+    a {
+        text-decoration: underline;
+        @keyframes text-shadow-drop-br{0%{text-shadow:0 0 0 transparent}100%{text-shadow:6px 6px 18px rgba(0,0,0,.35)}}
+        &:hover {
+            animation:text-shadow-drop-br .6s both;
+        }
+    }
+
+    h4 {
+        font-family: "Asap", sans-serif;
+        font-weight: 700;
+        color: $detail_color;
+        margin-left: 6em;
+        margin-bottom: 0;
+    }
+    
+    p:first-of-type {
+        font-family: 'Titillium Web', sans-serif;
+        font-size: 30px;
+        line-height: 50px;
+
+        &::first-letter {
+            font-size: 50px;
+        }
+    }
+}
 
 .headerTitre {
     color: $nice_color;
