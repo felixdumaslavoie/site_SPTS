@@ -2,21 +2,27 @@ import Head from 'next/head'
 import styles from '../../styles/textes.module.scss'
 import Link from 'next/link'
 import { useEffect } from 'react'
+import useSWR from 'swr'
 import { useRouter } from 'next/router'
 
+const fetcher = (...args) => fetch(...args).then(res => res.json())
 
-const Post = () => {
+
+export default function Textes(){
+  const router = useRouter();
+  const { idTexte } = router.query;
+  const { data, error } = useSWR('https://collectifspts.org/dynamicDataSPTS/textes/index/index.json', fetcher);
   var Logo = undefined;
   var endOfDocumentTop = undefined;
   var size = undefined;
-
   useEffect(() => {
     if (Logo === undefined || endOfDocumentTop === undefined || size === undefined) {
       Logo = document.getElementById("logo");
       endOfDocumentTop = 150;
       size = 0;
+      
     }
-
+    
     window.onscroll = function () {
       let scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 
@@ -29,117 +35,50 @@ const Post = () => {
       }
     };
 
+    if (data != undefined)
+    {
+      let urlTexte = idTexte;
+      console.log(data);
+      console.log(idTexte);
+    }
+    /*
+    const router = useRouter();
+    var texte = router.query;
+    var id = undefined;
+    var item = undefined;
+  
+  
+    if (texte.idTexte !== undefined) {
+      id = texte.idTexte;
+      console.log(id);
+      window.$ = window.jQuery = require('jquery');
+      let txtIndex = "https://collectifspts.org/dynamicDataSPTS/textes/index/index.json"; 
+      //let json = require(txtIndex);
+      $.getJSON(txtIndex, function(json) {
+        console.log(json); // this will show the info it in firebug console
+    });
+      
+      /*
+      let titre = finalArray[0];
+      let autrices = finalArray[2].split(';')
+      let date = finalArray[3]
+      let texteMD = finalArray[4]
+      $('#txtTitre').html(titre);
+      let lesAutrices = "";
+      autrices.forEach(element => lesAutrices += ("<li>" + element + "</li>"));
+      $('#txtAutrices').html(lesAutrices)
+      $('#txtDate').html("Publié le " + date);
+  
+      var MarkdownIt = require('markdown-it'),
+      md = new MarkdownIt();
+      let result = md.render(texteMD);
+      $('#texteContenu').html(result);*/
+  
   }, []);
 
-
-  const router = useRouter()
-  var texte = router.query;
-  var id = undefined;
-  var item = undefined;
-
-
-  if (texte.idTexte !== undefined) {
-    id = texte.idTexte;
-    window.$ = window.jQuery = require('jquery');
-    var url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSR_-ck57oRickpgHNsBAeXuCrLWcqiyGQFHsMNDevh8Oj2LZlfBlXbzYvk3XDdZbYr9kkURQy_ckrm/pub?gid=0&single=true&output=tsv";
-    
-    $.ajax({
-      url: url,
-      context: document.body,
-      async: true,
-      cache: true,
-      success: function (data) {
-      
-        item = data.split(String.fromCharCode(9));
-
-        console.log(item)
-
-        var finalArray = [];
-        const stringD = "^\r\n";
-        const stringF = "\r\n$";
-        const regexpDebut = new RegExp(stringD);
-        const regexpFin = new RegExp(stringF);
-        $.each(item, function (i, items) {
-          if (items.includes("\r\n")) {
-            if (regexpDebut.test(items) || regexpFin.test(items)) {
-              //console.log(items);
-              items = items.replace("\r\n", "");
-              finalArray.push(items);
-            }
-            else {
-              let tab = items.split("\r\n");
-              finalArray.push(tab[0]);
-              finalArray.push(tab[1]);
-            }
-          }
-          else if (items == "") { /* Do nothing...*/ }
-          else if (items) {
-            finalArray.push(items);
-          }
-        });
-
-        finalArray.splice(0, 10) // On enlève les 10 premiers résultats
-
-        // Fonction de recherche du texte grâce à l'url de next.js...
-        var i = 1;
-        let trouve = false;
-        do {
-          if (finalArray[i]) {
-
-            if (finalArray[i] == texte.idTexte)
-            {
-              trouve = true;
-              break;
-            }
-            i += 5;
-          } else {
-            break;
-          }
-        } while (true);
-
-        //Garder juste l'information du texte recherché...
-        if (trouve)
-        {
-          i -= 1; // On revient une case avant pour bien se positionner...
-          finalArray = finalArray.splice(i, 5) // On coupe pour ne garder que le bon texte
-          //console.log(finalArray)
-          let titre = finalArray[0];
-          let autrices = finalArray[2].split(';')
-          let date = finalArray[3]
-          let texteMD = finalArray[4]
-          $('#txtTitre').html(titre);
-          let lesAutrices = "";
-          autrices.forEach(element => lesAutrices += ("<li>" + element + "</li>"));
-          $('#txtAutrices').html(lesAutrices)
-          $('#txtDate').html("Publié le " + date);
-
-          var MarkdownIt = require('markdown-it'),
-          md = new MarkdownIt();
-          let result = md.render(texteMD);
-          $('#texteContenu').html(result);
-          //$('#texteContenu').find("a").attr() https://stackoverflow.com/questions/20354276/adding-attribute-to-link-via-jquery
-        }
-      },
-      error: function (err) {
-        console.log(err.status);
-        let string = "erreur dans la recherche du texte";
-        console.log(string);
-        $('#texteContenu').html(string);
-      }
-    });
-  }
-
-
-
-
-
-
-
-
-
+  console.log(data);
   return (
     <>
-
       <div className={styles.container}>
         <Head>
           <title>Collectif SPTS: Textes</title>
@@ -220,4 +159,3 @@ const Post = () => {
     </>)
 }
 
-export default Post
