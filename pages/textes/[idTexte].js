@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useEffect } from 'react'
 import useSWR from 'swr'
 import { useRouter } from 'next/router'
+import Script from 'next/script'
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
@@ -15,7 +16,9 @@ export default function Textes(){
   var Logo = undefined;
   var endOfDocumentTop = undefined;
   var size = undefined;
+  
   useEffect(() => {
+    
     if (Logo === undefined || endOfDocumentTop === undefined || size === undefined) {
       Logo = document.getElementById("logo");
       endOfDocumentTop = 150;
@@ -34,13 +37,6 @@ export default function Textes(){
         size = 0;
       }
     };
-
-    if (data != undefined)
-    {
-      let urlTexte = idTexte;
-      console.log(data);
-      console.log(idTexte);
-    }
     /*
     const router = useRouter();
     var texte = router.query;
@@ -76,16 +72,64 @@ export default function Textes(){
   
   }, []);
 
-  console.log(data);
+  /*const showText = (txt) => {
+    console.log(txt);
+    window.$ = window.jQuery = require('jquery');
+    var MarkdownIt = require('markdown-it'),
+    md = new MarkdownIt();
+    let result = md.render(txt);
+    $('#texteContenu').html(result);
+  };
+
+  const showTextError = (txt) => {
+    console.log(txt);
+  };
+
+  if (data != undefined)
+  {
+    let urlTexte = idTexte;
+    console.log(data);
+    console.log(idTexte);
+    fetch('https://collectifspts.org/dynamicDataSPTS/textes/' + idTexte + ".md").then(response =>{
+      return response.blob();
+    }).then( blob => {return blob.text()}).then(showText, showTextError);
+  }*/
+  
+
   return (
+    
     <>
+      <Script id="texts.js" strategy="afterInteractive">
+        {`
+        const showText = (txt) => {
+          console.log(txt);
+          window.$ = window.jQuery = require('jquery');
+          var MarkdownIt = require('markdown-it'),
+          md = new MarkdownIt();
+          let result = md.render(txt);
+          $('#texteContenu').html(result);
+        };
+      
+        const showTextError = (txt) => {
+          console.log(txt);
+        };
+        let idTexte = "le-combat-des-stagiaires-reprend"
+        let urlTexte = idTexte;
+        console.log(data);
+        console.log(idTexte);
+        fetch('https://collectifspts.org/dynamicDataSPTS/textes/' + idTexte + ".md").then(response =>{
+           return response.blob();
+         }).then( blob => {return blob.text()}).then(showText, showTextError);
+        `}
+      </Script>
+
       <div className={styles.container}>
         <Head>
           <title>Collectif SPTS: Textes</title>
           <meta property="og:title" content="Collectif SPTS: Textes" />
           <meta property="og:url" content="https://collectifspts.org/textes/" />
           <meta property="og:image" content="/thumbnails/appuis.jpg" />
-          <meta property="og:type" content="website" />
+          <meta property="og:type" content="article" />
           <meta property="og:description" content="Organismes qui appuient la salarisation" />
           <link rel="icon" href="/favicon.ico" />
           <meta name="description" content="Collectif un salaire pour toustes les stagiaires" />
