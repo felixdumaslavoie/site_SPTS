@@ -1,29 +1,22 @@
 import Head from 'next/head'
 import styles from '../../styles/textes.module.scss'
 import Link from 'next/link'
-import { useEffect } from 'react'
-import useSWR from 'swr'
-import { useRouter } from 'next/router'
+import { useEffect, useCallback } from 'react'
 import Script from 'next/script'
 
-const fetcher = (...args) => fetch(...args).then(res => res.json())
+const fetcher = (...args) => fetch(...args).then(res => res.json());
 
 
 export default function Textes(){
-  const router = useRouter();
-  const { idTexte } = router.query;
-  const { data, error } = useSWR('https://collectifspts.org/dynamicDataSPTS/textes/index/index.json', fetcher);
   var Logo = undefined;
   var endOfDocumentTop = undefined;
   var size = undefined;
-  
-  useEffect(() => {
-    
+
+  const logoThing = useCallback( () => {
     if (Logo === undefined || endOfDocumentTop === undefined || size === undefined) {
       Logo = document.getElementById("logo");
       endOfDocumentTop = 150;
       size = 0;
-      
     }
     
     window.onscroll = function () {
@@ -37,63 +30,66 @@ export default function Textes(){
         size = 0;
       }
     };
-    /*
-    const router = useRouter();
-    var texte = router.query;
-    var id = undefined;
-    var item = undefined;
-  
-  
-    if (texte.idTexte !== undefined) {
-      id = texte.idTexte;
-      console.log(id);
-      window.$ = window.jQuery = require('jquery');
-      let txtIndex = "https://collectifspts.org/dynamicDataSPTS/textes/index/index.json"; 
-      //let json = require(txtIndex);
-      $.getJSON(txtIndex, function(json) {
-        console.log(json); // this will show the info it in firebug console
-    });
-      
-      /*
-      let titre = finalArray[0];
-      let autrices = finalArray[2].split(';')
-      let date = finalArray[3]
-      let texteMD = finalArray[4]
-      $('#txtTitre').html(titre);
-      let lesAutrices = "";
-      autrices.forEach(element => lesAutrices += ("<li>" + element + "</li>"));
-      $('#txtAutrices').html(lesAutrices)
-      $('#txtDate').html("Publié le " + date);
-  
-      var MarkdownIt = require('markdown-it'),
-      md = new MarkdownIt();
-      let result = md.render(texteMD);
-      $('#texteContenu').html(result);*/
-  
-  }, []);
+  },[])
 
-  /*const showText = (txt) => {
-    console.log(txt);
-    window.$ = window.jQuery = require('jquery');
-    var MarkdownIt = require('markdown-it'),
-    md = new MarkdownIt();
-    let result = md.render(txt);
-    $('#texteContenu').html(result);
-  };
+  const fetchIndexData = useCallback(async () => {
+    const data = await fetch('https://collectifspts.org/dynamicDataSPTS/textes/index/index.json').then(response => {
+      if (!response.ok) {
+          throw new Error("HTTP error " + response.status);
+      }
+      return response.json();
+      })
+    return data;
+  },[])
 
-  const showTextError = (txt) => {
-    console.log(txt);
-  };
-
-  if (data != undefined)
-  {
-    let urlTexte = idTexte;
-    console.log(data);
-    console.log(idTexte);
-    fetch('https://collectifspts.org/dynamicDataSPTS/textes/' + idTexte + ".md").then(response =>{
+  const fetchTextData = useCallback(async (url) => {
+    const data = await fetch('https://collectifspts.org/dynamicDataSPTS/textes/' + url + ".md").then(response =>{
       return response.blob();
-    }).then( blob => {return blob.text()}).then(showText, showTextError);
-  }*/
+      }).then( blob => {return blob.text()});
+    return data;
+  },[])
+
+
+  
+  useEffect(() => {
+    window.$ = window.jQuery = require('jquery');
+    window.MarkdownIt = require('markdown-it');
+
+
+    fetchIndexData().catch(console.error).then((index)=>{
+      console.log(index);
+
+      let url = window.location.pathname.split('/')[2];
+      
+      if (!index.url.includes(url)) // Si le texte n'est pas présent dans l'index... On retourne à la page des textes et on affiche un petit message...
+      {
+        window.location.replace("../textes");
+      }
+      let idx = index.url.indexOf(url);
+      
+      fetchTextData(url).catch(console.error).then((txt) =>{
+        let titre = index.titre[idx];
+        let autrices = index.autrices[idx].split(';')
+        let date = index.date[idx];
+        $('#txtTitre').html(titre);
+
+        let lesAutrices = "";
+        autrices.forEach(element => lesAutrices += ("<li>" + element + "</li>"));
+        $('#txtAutrices').html(lesAutrices)
+        $('#txtDate').html("Publié le " + date);
+        
+        let md = new MarkdownIt();
+        let result = md.render(txt);
+        $('#texteContenu').html(result);
+        $('#texteContenu a').attr('target','_blank');
+      })
+    });
+
+    logoThing();
+   
+  
+  }, [logoThing, fetchIndexData, fetchTextData]);
+
   
 
   return (
@@ -101,25 +97,7 @@ export default function Textes(){
     <>
       <Script id="texts.js" strategy="afterInteractive">
         {`
-        const showText = (txt) => {
-          console.log(txt);
-          window.$ = window.jQuery = require('jquery');
-          var MarkdownIt = require('markdown-it'),
-          md = new MarkdownIt();
-          let result = md.render(txt);
-          $('#texteContenu').html(result);
-        };
-      
-        const showTextError = (txt) => {
-          console.log(txt);
-        };
-        let idTexte = "le-combat-des-stagiaires-reprend"
-        let urlTexte = idTexte;
-        console.log(data);
-        console.log(idTexte);
-        fetch('https://collectifspts.org/dynamicDataSPTS/textes/' + idTexte + ".md").then(response =>{
-           return response.blob();
-         }).then( blob => {return blob.text()}).then(showText, showTextError);
+        console.log(window.location.pathname.split('/')[2]);
         `}
       </Script>
 
