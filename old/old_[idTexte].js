@@ -3,9 +3,6 @@ import styles from '../../styles/textes.module.scss'
 import Link from 'next/link'
 import { useEffect, useCallback } from 'react'
 
-const fetcher = (...args) => fetch(...args).then(res => res.json());
-
-
 export default function Textes(){
   var Logo = undefined;
   var endOfDocumentTop = undefined;
@@ -54,9 +51,7 @@ export default function Textes(){
     window.$ = window.jQuery = require('jquery');
     window.MarkdownIt = require('markdown-it');
 
-
     fetchIndexData().catch(console.error).then((index)=>{
-      console.log(index);
 
       let url = window.location.pathname.split('/')[2];
       

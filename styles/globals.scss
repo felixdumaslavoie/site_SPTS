@@ -40,6 +40,7 @@ body {
   z-index: 100;
   position: fixed;
   top: 0;
+  left: 0;
   background-image: url('../public/textureWebMixed.png');
   @keyframes wobble-hor-bottom{0%,100%{transform:translateX(0);transform-origin:50% 50%}15%{transform:translateX(-30px) rotate(-6deg)}30%{transform:translateX(15px) rotate(6deg)}45%{transform:translateX(-15px) rotate(-3.6deg)}60%{transform:translateX(9px) rotate(2.4deg)}75%{transform:translateX(-6px) rotate(-1.2deg)}}
   animation:wobble-hor-bottom 2.5s both;

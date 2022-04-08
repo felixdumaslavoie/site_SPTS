@@ -2,6 +2,8 @@ import Head from 'next/head'
 import styles from '../../styles/materiel.module.scss'
 import Link from 'next/link'
 import { useEffect } from 'react'
+import Navbar from '../../comps/Navbar'
+import Footer from '../../comps/Footer'
 
 export default function Materiel() {
   var Logo = undefined;
@@ -11,7 +13,7 @@ export default function Materiel() {
   useEffect(() => {
     if (Logo === undefined || endOfDocumentTop === undefined || size === undefined ) {
       Logo = document.getElementById("logo");
-      endOfDocumentTop = 150;
+      endOfDocumentTop = 0;
       size = 0;
     }
 
@@ -49,46 +51,12 @@ export default function Materiel() {
       </Head>
 
       <main className={styles.main}>
-      <div className='mainMenu'>
-          <ul>
-            <li><Link href="/"><a><div id='logo'></div></a></Link></li>
-            <li className='detail_color'>
-              <Link href="/">
-                <a>Accueil</a>
-              </Link></li>
-              <li className='sub1_color'>
-              <Link href="/materiel">
-                <a className='selected'>Matériel</a>
-              </Link></li>
-            <li className='nice_color'><Link href="/historique">
-                <a>Historique</a>
-              </Link></li>
-            <li className='sub1_color'><Link href="/evenements">
-                <a>Évenements</a>
-              </Link></li>
-            <li className='nice_color'><Link href="/archives">
-                <a>Archives</a>
-              </Link></li>
-            <li className='sub1_color'><Link href="/appuis">
-                <a>Appuis</a>
-              </Link></li>
-            <li className='detail_color'><Link href="/contact">
-                <a>Contact</a>
-              </Link></li>
-          </ul>
-        </div>
+        <Navbar/>
         <header className='header_subsections'>
         <h1 className='headerh1blue'>
 
         <div className='header_underline'>
-          <span>M</span>
-          <span>a</span>
-          <span>t</span>
-          <span>é</span>
-          <span>r</span>
-          <span>i</span>
-          <span>e</span>
-          <span>l</span>
+          <span>Matériel</span>
         </div>
         </h1>
         <h5>
@@ -96,24 +64,11 @@ export default function Materiel() {
         </h5>
         </header>
 
-
         
-
        
       </main>
 
-      <footer className='footer'>
-        <ul>
-          <li><a href="https://www.facebook.com/collectif.spts" target="_blank" rel="noopener noreferrer">Collectif SPTS</a></li>
-          <li>-</li>
-          <li>2022</li>
-        </ul>
-        <ul>
-          <li>Site web réalisé par</li>
-          <li><span>-</span></li>
-          <li><a href="https://github.com/felixdumaslavoie" target="_blank" rel="noopener noreferrer">Félix D-L</a></li>
-        </ul>
-      </footer>
+      <Footer/>
     </div>
     </>)
 }
