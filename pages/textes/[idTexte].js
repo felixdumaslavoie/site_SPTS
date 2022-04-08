@@ -2,7 +2,6 @@ import Head from 'next/head'
 import styles from '../../styles/textes.module.scss'
 import Link from 'next/link'
 import { useEffect, useCallback } from 'react'
-import Script from 'next/script'
 
 const fetcher = (...args) => fetch(...args).then(res => res.json());
 
@@ -71,12 +70,15 @@ export default function Textes(){
         let titre = index.titre[idx];
         let autrices = index.autrices[idx].split(';')
         let date = index.date[idx];
+        let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        let dateTxt = new Date(date);
+        let dateModif = dateTxt.toLocaleDateString('fr-CA', options)
         $('#txtTitre').html(titre);
 
         let lesAutrices = "";
         autrices.forEach(element => lesAutrices += ("<li>" + element + "</li>"));
         $('#txtAutrices').html(lesAutrices)
-        $('#txtDate').html("Publié le " + date);
+        $('#txtDate').html("Publié le " + dateModif);
         
         let md = new MarkdownIt();
         let result = md.render(txt);
@@ -87,7 +89,6 @@ export default function Textes(){
 
     logoThing();
    
-  
   }, [logoThing, fetchIndexData, fetchTextData]);
 
   
@@ -95,12 +96,6 @@ export default function Textes(){
   return (
     
     <>
-      <Script id="texts.js" strategy="afterInteractive">
-        {`
-        console.log(window.location.pathname.split('/')[2]);
-        `}
-      </Script>
-
       <div className={styles.container}>
         <Head>
           <title>Collectif SPTS: Textes</title>
