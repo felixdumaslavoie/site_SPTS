@@ -17,6 +17,9 @@ export default function Evenements() {
       size = 0;
     }
 
+    let select = document.getElementById("id_events");
+    select.classList.add("selected");
+
     window.onscroll = function() {
       let scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
     

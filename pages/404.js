@@ -1,8 +1,9 @@
 // pages/404.js
 import Head from 'next/head'
 import styles from '../styles/textes.module.scss'
-import Link from 'next/link'
 import { useEffect, useCallback } from 'react'
+import Navbar from '../comps/Navbar'
+import Footer from '../comps/Footer'
 
 export default function Textes(){
   var Logo = undefined;
@@ -51,6 +52,12 @@ export default function Textes(){
   useEffect(() => {
     window.$ = window.jQuery = require('jquery');
     window.MarkdownIt = require('markdown-it');
+    try{
+
+    }
+    catch(err){
+        console.log(err);
+    }
 
     fetchIndexData().catch(console.error).then((index)=>{
 
@@ -96,7 +103,7 @@ export default function Textes(){
         <Head>
           <title>Collectif SPTS: Textes</title>
           <meta property="og:title" content="Collectif SPTS: Textes" />
-          <meta property="og:url" content="https://collectifspts.org/textes/" />
+          <meta property="og:url" content="https://collectifspts.org/texte/" />
           <meta property="og:image" content="/thumbnails/appuis.jpg" />
           <meta property="og:type" content="article" />
           <meta property="og:description" content="Organismes qui appuient la salarisation" />
@@ -105,34 +112,7 @@ export default function Textes(){
         </Head>
 
         <main className={styles.main}>
-          <div className='mainMenu'>
-            <ul>
-              <li><Link href="/"><a><div id='logo'></div></a></Link></li>
-              <li className='detail_color'>
-                <Link href="/">
-                  <a>Accueil</a>
-                </Link></li>
-              <li className='sub1_color'>
-                <Link href="/materiel">
-                  <a>Matériel</a>
-                </Link></li>
-              <li className='nice_color'><Link href="/historique">
-                <a>Historique</a>
-              </Link></li>
-              <li className='sub1_color'><Link href="/evenements">
-                <a>Évenements</a>
-              </Link></li>
-              <li className='nice_color'><Link href="/archives">
-                <a>Archives</a>
-              </Link></li>
-              <li className='sub1_color'><Link href="/appuis">
-                <a className='selected'>Appuis</a>
-              </Link></li>
-              <li className='detail_color'><Link href="/contact">
-                <a>Contact</a>
-              </Link></li>
-            </ul>
-          </div>
+          <Navbar/>
           <header className='header_subsections_center'>
             <h1 id='txtTitre' className={styles.headerTitre}>
               <span className='detail_color'>Chargement...</span>
@@ -156,18 +136,7 @@ export default function Textes(){
 
         </main>
 
-        <footer className='footer'>
-          <ul>
-            <li><a href="https://www.facebook.com/collectif.spts" target="_blank" rel="noopener noreferrer">Collectif SPTS</a></li>
-            <li>-</li>
-            <li>2022</li>
-          </ul>
-          <ul>
-            <li>Site web réalisé par</li>
-            <li><span>-</span></li>
-            <li><a href="https://github.com/felixdumaslavoie" target="_blank" rel="noopener noreferrer">Félix D-L</a></li>
-          </ul>
-        </footer>
+      <Footer/>
       </div>
     </>)
 }

@@ -17,6 +17,9 @@ export default function Historique() {
       size = 0;
     }
 
+    let select = document.getElementById("id_historique");
+    select.classList.add("selected");
+
     window.onscroll = function() {
       let scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
     

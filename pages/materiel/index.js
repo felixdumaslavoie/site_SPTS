@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import styles from '../../styles/materiel.module.scss'
-import Link from 'next/link'
 import { useEffect } from 'react'
 import Navbar from '../../comps/Navbar'
 import Footer from '../../comps/Footer'
@@ -16,6 +15,9 @@ export default function Materiel() {
       endOfDocumentTop = 0;
       size = 0;
     }
+
+    let select = document.getElementById("id_materiel");
+    select.classList.add("selected");
 
     window.onscroll = function() {
       let scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;

@@ -80,8 +80,8 @@
         height: 3px;
         bottom: -15px;
         left: 50%;
-        -webkit-animation: superBorder 3s cubic-bezier(0.215, 0.61, 0.355, 1) both;
-        animation: superBorder 3s cubic-bezier(0.215, 0.61, 0.355, 1) both;
+        -webkit-animation: superBorder 1s cubic-bezier(0.215, 0.61, 0.355, 1) both;
+        animation: superBorder 1s cubic-bezier(0.215, 0.61, 0.355, 1) both;
         transform: translate(-50%, -50%);
     }
 }
