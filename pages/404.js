@@ -11,22 +11,39 @@ export default function Textes(){
   var size = undefined;
 
   const logoThing = useCallback( () => {
+    var prevScrollpos = window.pageYOffset;
     if (Logo === undefined || endOfDocumentTop === undefined || size === undefined) {
       Logo = document.getElementById("logo");
+      Logo.classList.add("apparition");
       endOfDocumentTop = 150;
       size = 0;
     }
+
+    var navBar = document.getElementById("navbar");
+    navBar.classList.add("special");
+    
     
     window.onscroll = function () {
       let scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 
       if (size == 0 && scroll > endOfDocumentTop) {
         Logo.className = 'smallLogo';
+        Logo.classList.add("apparition");
         size = 1;
       } else if (size == 1 && scroll <= endOfDocumentTop) {
         Logo.className = 'largeLogo';
+        Logo.classList.add("apparition");
         size = 0;
       }
+      var currentScrollPos = window.pageYOffset;
+      if (prevScrollpos > currentScrollPos) {
+        navBar.classList.remove("hide");
+        
+      } else {
+        navBar.classList.add("hide");
+        Logo.className = 'smallLogo';
+      }
+      prevScrollpos = currentScrollPos;
     };
   },[])
 

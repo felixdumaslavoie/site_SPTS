@@ -18,6 +18,8 @@ export default function Home() {
       size = 0;
     }
 
+    Logo.classList.add("apparition");
+
     window.onscroll = function() {
       let scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
     

@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import styles from '../../styles/textes.module.scss'
+import styles from '../../styles/indexTextes.module.scss'
 import Navbar from '../../comps/Navbar'
 import Footer from '../../comps/Footer'
 import { useEffect, useCallback } from 'react'
@@ -10,8 +10,19 @@ export default function Texte(){
   var endOfDocumentTop = undefined;
   var size = undefined;
 
+  const fetchIndexData = useCallback(async () => {
+    const data = await fetch('https://collectifspts.org/dynamicDataSPTS/textes/index/index.json').then(response => {
+      if (!response.ok) {
+          throw new Error("HTTP error " + response.status);
+      }
+      return response.json();
+      })
+    return data;
+  },[])
 
   useEffect(() => {
+    window.$ = window.jQuery = require('jquery');
+    
     if (Logo === undefined || endOfDocumentTop === undefined || size === undefined ) {
       Logo = document.getElementById("logo");
       endOfDocumentTop = 0;
@@ -20,6 +31,16 @@ export default function Texte(){
     
     let select = document.getElementById("id_textes");
     select.classList.add("selected");
+
+    fetchIndexData().catch(console.error).then((index)=>{ 
+
+      
+      for(let i=0; i< index.id.length; i++)
+      {
+        $(".listeTxts").append("<li><a href="+ "textes/" + index.url[i] +">"+index.titre[i] +"</a></li>");
+      }
+
+    });
 
     window.onscroll = function() {
       let scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
@@ -32,7 +53,7 @@ export default function Texte(){
        size = 0;
       }};
 
-  }, []);
+  }, [fetchIndexData]);
   
 
 
@@ -56,21 +77,13 @@ export default function Texte(){
 
               <header className='header_subsections_center'>
                 <h1 id='txtTitre' className={styles.headerTitre}>
-                  <span className='detail_color'>Chargement...</span>
+                  <span className='detail_color'>Index des textes</span>
                 </h1>
-                <p id='txtDate' className={styles.headerDate}></p>
               </header>
     
-              <section className={styles.autrices}>
-              <h5>
-                  <ul id='txtAutrices'>
-                    
-                  </ul>
-              </h5>
-              </section>
-    
-              <section id='texteContenu' className={styles.leTexte}>
-    
+              <section id='listeTextes' className={styles.listeTextes}>
+                <ul className='listeTxts'>
+                </ul>
               </section>
     
     
