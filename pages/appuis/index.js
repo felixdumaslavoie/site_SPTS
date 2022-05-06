@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import styles from '../../styles/appuis.module.scss'
-import Link from 'next/link'
 import { useEffect } from 'react'
 import Navbar from '../../comps/Navbar'
 import Footer from '../../comps/Footer'
@@ -86,12 +85,7 @@ export default function Appuis() {
             <h1 className='headerh1blue'>
 
               <div className='header_underline'>
-                <span>A</span>
-                <span>p</span>
-                <span>p</span>
-                <span>u</span>
-                <span>i</span>
-                <span>s</span>
+                <span>Appuis</span>
               </div>
             </h1>
             <h5>

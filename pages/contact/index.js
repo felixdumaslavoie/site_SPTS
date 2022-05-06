@@ -56,13 +56,7 @@ export default function Contact() {
         <h1 className={styles.title}>
 
         <div className='header_underline'>
-          <span>C</span>
-          <span>o</span>
-          <span>n</span>
-          <span>t</span>
-          <span>a</span>
-          <span>c</span>
-          <span>t</span>
+          <span>Contact</span>
         </div>
         </h1>
         <h3>
