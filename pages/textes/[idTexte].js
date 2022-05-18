@@ -2,23 +2,35 @@ import Head from 'next/head'
 import styles from '../../styles/indexTextes.module.scss'
 import Navbar from '../../comps/Navbar'
 import Footer from '../../comps/Footer'
-import { useEffect, useCallback } from 'react'
+import { useEffect } from 'react'
 import { fetchAPI } from "../../lib/api";
 
-export default function Texte(){
+export async function getServerSideProps(context) {
+  const { url } = context.query;
+  let test = "?filters[Url]=le-combat-des-stagiaires-reprend";
+
+  const [texteRes] = await Promise.all([
+    fetchAPI("/textes?filters[Url]=le-combat-des-stagiaires-reprend", { test })
+  ]);
+
+
+  console.log(texteRes)
+
+  return {
+    props: {
+      texte: texteRes.data
+    }
+    
+  };
+}
+
+
+export default function Texte({texte}){
     var Logo = undefined;
     var endOfDocumentTop = undefined;
     var size = undefined;
   
-    const fetchIndexData = useCallback(async () => {
-      const data = await fetch('https://collectifspts.org/dynamicDataSPTS/textes/index/index.json').then(response => {
-        if (!response.ok) {
-            throw new Error("HTTP error " + response.status);
-        }
-        return response.json();
-        })
-      return data;
-    },[])
+
   
     useEffect(() => {
       window.$ = window.jQuery = require('jquery');
@@ -31,16 +43,8 @@ export default function Texte(){
       
       let select = document.getElementById("id_textes");
       select.classList.add("selected");
-  
-      fetchIndexData().catch(console.error).then((index)=>{ 
-  
-        
-        for(let i=0; i< index.id.length; i++)
-        {
-          $(".listeTxts").append("<li><a href="+ "textes/" + index.url[i] +">"+index.titre[i] +"</a></li>");
-        }
-  
-      });
+     
+      console.log(texte)
   
       window.onscroll = function() {
         let scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
@@ -53,7 +57,7 @@ export default function Texte(){
          size = 0;
         }};
   
-    }, [fetchIndexData]);
+    }, []);
     
   
   
@@ -96,18 +100,3 @@ export default function Texte(){
   }
 
 
-  export async function getStaticProps() {
-    // Run API calls in parallel
-    let url;
-    const [texteRes] = await Promise.all([
-      fetchAPI("/textes?filters[Url]=" + url, { })
-    ]);
-  
-    return {
-      props: {
-        texte: texteRes.data
-      },
-      revalidate: 1,
-    };
-  }
-  
