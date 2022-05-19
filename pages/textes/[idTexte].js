@@ -3,33 +3,31 @@ import styles from '../../styles/indexTextes.module.scss'
 import Navbar from '../../comps/Navbar'
 import Footer from '../../comps/Footer'
 import { useEffect } from 'react'
-import { fetchAPI } from "../../lib/api";
+import { simpleApi } from '../../lib/simpleApi'
 
 export async function getServerSideProps(context) {
-  const { url } = context.query;
-  let test = "?filters[Url]=le-combat-des-stagiaires-reprend";
+  const { idTexte } = context.query;
 
-  const [texteRes] = await Promise.all([
-    fetchAPI("/textes?filters[Url]=le-combat-des-stagiaires-reprend", { test })
-  ]);
+  console.log(idTexte)
+  let quer = "textes/?filters[Url]=" + idTexte;
 
+  let result = await simpleApi(quer)
 
-  console.log(texteRes)
+  let id = result.result.data[0].id;
 
+  let txt = await simpleApi("textes/" + id + "?populate=*")
   return {
     props: {
-      texte: texteRes.data
+      texte: txt
     }
     
   };
 }
 
-
 export default function Texte({texte}){
     var Logo = undefined;
     var endOfDocumentTop = undefined;
     var size = undefined;
-  
 
   
     useEffect(() => {

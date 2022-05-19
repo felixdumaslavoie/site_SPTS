@@ -47,23 +47,6 @@ export default function Textes(){
     };
   },[])
 
-  const fetchIndexData = useCallback(async () => {
-    const data = await fetch('https://collectifspts.org/dynamicDataSPTS/textes/index/index.json').then(response => {
-      if (!response.ok) {
-          throw new Error("HTTP error " + response.status);
-      }
-      return response.json();
-      })
-    return data;
-  },[])
-
-  const fetchTextData = useCallback(async (url) => {
-    const data = await fetch('https://collectifspts.org/dynamicDataSPTS/textes/' + url + ".md").then(response =>{
-      return response.blob();
-      }).then( blob => {return blob.text()});
-    return data;
-  },[])
-
 
   
   useEffect(() => {
@@ -75,41 +58,8 @@ export default function Textes(){
     catch(err){
         console.log(err);
     }
-
-    fetchIndexData().catch(console.error).then((index)=>{
-
-      let url = window.location.pathname.split('/')[2];
-      
-      if (!index.url.includes(url)) // Si le texte n'est pas présent dans l'index... On retourne à la page des textes et on affiche un petit message...
-      {
-        window.location.replace("../textes");
-      }
-      let idx = index.url.indexOf(url);
-      
-      fetchTextData(url).catch(console.error).then((txt) =>{
-        let titre = index.titre[idx];
-        let autrices = index.autrices[idx].split(';')
-        let date = index.date[idx];
-        let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        let dateTxt = new Date(date);
-        let dateModif = dateTxt.toLocaleDateString('fr-CA', options)
-        $('#txtTitre').html(titre);
-
-        let lesAutrices = "";
-        autrices.forEach(element => lesAutrices += ("<li>" + element + "</li>"));
-        $('#txtAutrices').html(lesAutrices)
-        $('#txtDate').html("Publié le " + dateModif);
-        
-        let md = new MarkdownIt();
-        let result = md.render(txt);
-        $('#texteContenu').html(result);
-        $('#texteContenu a').attr('target','_blank');
-      })
-    });
-
-    logoThing();
    
-  }, [logoThing, fetchIndexData, fetchTextData]);
+  }, []);
 
   
 
@@ -118,7 +68,7 @@ export default function Textes(){
     <>
       <div className={styles.container}>
         <Head>
-          <title>Collectif SPTS: Textes</title>
+          <title>Collectif SPTS: 404 not found</title>
           <meta property="og:title" content="Collectif SPTS: Textes" />
           <meta property="og:url" content="https://collectifspts.org/texte/" />
           <meta property="og:image" content="/thumbnails/appuis.jpg" />
@@ -132,7 +82,7 @@ export default function Textes(){
           <Navbar/>
           <header className='header_subsections_center'>
             <h1 id='txtTitre' className={styles.headerTitre}>
-              <span className='detail_color'>Chargement...</span>
+              <span className='detail_color'>Ce contenu n'est pas disponible...</span>
             </h1>
             <p id='txtDate' className={styles.headerDate}></p>
           </header>
