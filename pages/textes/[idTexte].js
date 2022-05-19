@@ -63,7 +63,7 @@ export default function Texte({texte}){
           <>
             <div className={styles.container}>
               <Head>
-                <title>Collectif SPTS: Textes</title>
+                <title>Collectif SPTS: {texte.result.data.attributes.Titre}</title>
                 <meta property="og:title" content="Collectif SPTS: Textes" />
                 <meta property="og:url" content="https://collectifspts.org/textes/" />
                 <meta property="og:image" content="/thumbnails/appuis.jpg" />
@@ -75,12 +75,13 @@ export default function Texte({texte}){
       
               <main className={styles.main}>
   
-                <Navbar/>
   
                 <header className='header_subsections_center'>
+                <Navbar/>
                   <h1 id='txtTitre' className={styles.headerTitre}>
-                    <span className='detail_color'>Index des textes</span>
+                    <span className='detail_color'>{texte.result.data.attributes.Titre}</span>
                   </h1>
+                  
                 </header>
       
                 <section id='listeTextes' className={styles.listeTextes}>
