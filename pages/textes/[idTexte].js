@@ -1,21 +1,30 @@
 import Head from 'next/head'
-import styles from '../../styles/indexTextes.module.scss'
+import styles from '../../styles/textes.module.scss'
 import Navbar from '../../comps/Navbar'
 import Footer from '../../comps/Footer'
 import { useEffect } from 'react'
 import { simpleApi } from '../../lib/simpleApi'
+import  {useRouter } from 'next/router'
+
 
 export async function getServerSideProps(context) {
   const { idTexte } = context.query;
 
-  console.log(idTexte)
   let quer = "textes/?filters[Url]=" + idTexte;
 
   let result = await simpleApi(quer)
 
+  if(result[0] === undefined) {
+    return {
+      // returns the default 404 page with a status code of 404
+      notFound: true,
+    }
+  }
+
   let id = result.result.data[0].id;
 
   let txt = await simpleApi("textes/" + id + "?populate=*")
+
   return {
     props: {
       texte: txt
@@ -24,11 +33,20 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default function Texte({texte}){
+export default function Texte({texte, notFound}){
+    const router = useRouter()
     var Logo = undefined;
     var endOfDocumentTop = undefined;
     var size = undefined;
-
+    
+    if (notFound) {
+      return <>
+      <Head>
+        <meta name="robots" content="noindex"/>
+      </Head>
+      <DefaultErrorPage statusCode={404} />
+    </>
+    }
   
     useEffect(() => {
       window.$ = window.jQuery = require('jquery');
@@ -41,8 +59,6 @@ export default function Texte({texte}){
       
       let select = document.getElementById("id_textes");
       select.classList.add("selected");
-     
-      console.log(texte)
   
       window.onscroll = function() {
         let scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
@@ -58,7 +74,10 @@ export default function Texte({texte}){
     }, []);
     
   
-  
+      if (texte)
+      {
+
+     
       return (
           <>
             <div className={styles.container}>
@@ -81,14 +100,23 @@ export default function Texte({texte}){
                   <h1 id='txtTitre' className={styles.headerTitre}>
                     <span className='detail_color'>{texte.result.data.attributes.Titre}</span>
                   </h1>
-                  
                 </header>
+                  <section className={styles.autrices}>
+                  <h5>
+                      <ul id='txtAutrices'>
+                        {texte.result.data.attributes.auteurices.data.map((aut) => {
+                          return (
+                            <li key={aut.id}>{aut.attributes.Nom}</li>
+                            )
+                        })}
+                        
+                      </ul>
+                  </h5>
+                  </section>
       
-                <section id='listeTextes' className={styles.listeTextes}>
-                  <ul className='listeTxts'>
-                  </ul>
-                </section>
-      
+          <section id='texteContenu' className={styles.leTexte}>
+
+          </section>      
       
       
               </main>
@@ -96,6 +124,7 @@ export default function Texte({texte}){
               <Footer/>
             </div>
           </>)
+           }
   }
 
 

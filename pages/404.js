@@ -96,7 +96,9 @@ export default function Textes(){
           </section>
 
           <section id='texteContenu' className={styles.leTexte}>
-
+          {texte.result.data.attributes.auteurices.data.forEach( (autrice) => {
+                            return (<li>{autrice.attributes.Nom}</li>);
+                          })}
           </section>
 
 
