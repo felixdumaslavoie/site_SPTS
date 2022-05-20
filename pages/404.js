@@ -69,11 +69,12 @@ export default function Textes(){
       <div className={styles.container}>
         <Head>
           <title>Collectif SPTS: 404 not found</title>
-          <meta property="og:title" content="Collectif SPTS: Textes" />
-          <meta property="og:url" content="https://collectifspts.org/texte/" />
+          <meta name="robots" content="noindex"/>
+          <meta property="og:title" content="Collectif SPTS: Erreur 404" />
+          <meta property="og:url" content="https://collectifspts.org/404" />
           <meta property="og:image" content="/thumbnails/appuis.jpg" />
           <meta property="og:type" content="article" />
-          <meta property="og:description" content="Organismes qui appuient la salarisation" />
+          <meta property="og:description" content="Erreur 404: Impossible de trouver la page" />
           <link rel="icon" href="/favicon.ico" />
           <meta name="description" content="Collectif un salaire pour toustes les stagiaires" />
         </Head>
@@ -96,9 +97,6 @@ export default function Textes(){
           </section>
 
           <section id='texteContenu' className={styles.leTexte}>
-          {texte.result.data.attributes.auteurices.data.forEach( (autrice) => {
-                            return (<li>{autrice.attributes.Nom}</li>);
-                          })}
           </section>
 
 

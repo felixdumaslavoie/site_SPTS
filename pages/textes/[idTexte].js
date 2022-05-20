@@ -14,11 +14,14 @@ export async function getServerSideProps(context) {
 
   let result = await simpleApi(quer)
 
-  if(result[0] === undefined) {
+  if(result.result.data[0] === undefined) {
     return {
-      // returns the default 404 page with a status code of 404
-      notFound: true,
-    }
+      // returns a redirect to an internal page `/another-page`
+      redirect: {
+        destination: '/404',
+        permanent: false,
+      },
+    };
   }
 
   let id = result.result.data[0].id;
@@ -72,11 +75,6 @@ export default function Texte({texte, notFound}){
         }};
   
     }, []);
-    
-  
-      if (texte)
-      {
-
      
       return (
           <>
@@ -124,7 +122,7 @@ export default function Texte({texte, notFound}){
               <Footer/>
             </div>
           </>)
-           }
+           
   }
 
 
