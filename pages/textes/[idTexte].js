@@ -28,15 +28,21 @@ export async function getServerSideProps(context) {
 
   let txt = await simpleApi("textes/" + id + "?populate=*")
 
+  var md = require('markdown-it')();
+  let contenu = md.render(txt.result.data.attributes.Contenu);
+
+  contenu = {__html: contenu};
+
   return {
     props: {
-      texte: txt
+      texte: txt,
+      content: contenu
     }
     
   };
 }
 
-export default function Texte({texte, notFound}){
+export default function Texte({texte, content, notFound}){
     const router = useRouter()
     var Logo = undefined;
     var endOfDocumentTop = undefined;
@@ -112,8 +118,7 @@ export default function Texte({texte, notFound}){
                   </h5>
                   </section>
       
-          <section id='texteContenu' className={styles.leTexte}>
-
+          <section id='texteContenu' className={styles.leTexte} dangerouslySetInnerHTML={content}>
           </section>      
       
       

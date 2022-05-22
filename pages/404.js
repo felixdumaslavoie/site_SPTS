@@ -83,21 +83,11 @@ export default function Textes(){
           <Navbar/>
           <header className='header_subsections_center'>
             <h1 id='txtTitre' className={styles.headerTitre}>
-              <span className='detail_color'>Ce contenu n'est pas disponible...</span>
+              <span className='detail_color'>Erreur 404: contenu indisponible</span>
             </h1>
             <p id='txtDate' className={styles.headerDate}></p>
           </header>
 
-          <section className={styles.autrices}>
-          <h5>
-              <ul id='txtAutrices'>
-                
-              </ul>
-          </h5>
-          </section>
-
-          <section id='texteContenu' className={styles.leTexte}>
-          </section>
 
 
 
