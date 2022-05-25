@@ -2,10 +2,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@1,300&display=swap');
 
 
+.coverImg {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 400px;
+  margin: 60px 0;
+  margin-bottom: 0;
+}
+.section p {
+  margin: 0   2em;
+}
+
 .leTexte {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 800px;
+    padding-right: 10px;
+    padding-left: 10px;
     p {
-        margin-top: 70px;
-        line-height: 50px;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 20px;
+        margin: 0;
+        margin-top: 0;
+        margin-bottom: 35px;
+        line-height: 2em;
+        color: black;
     }
 
     a {
@@ -17,22 +39,25 @@
     }
 
     h4 {
-        font-family: "Asap", sans-serif;
+        font-family: Georgia, 'Times New Roman', Times, serif;
         font-weight: 700;
-        color: $detail_color;
-        margin-left: 6em;
-        margin-bottom: 0;
+        color: $nice_color;
+
     }
     
     p:first-of-type {
-        font-family: 'Titillium Web', sans-serif;
-        font-size: 30px;
-        line-height: 50px;
+        font-family: Georgia, 'Times New Roman', Times, serif;
 
         &::first-letter {
             font-size: 50px;
         }
     }
+}
+
+header {
+  &.header_subsection_center {
+    padding: 25px 4em;
+  }
 }
 
 .headerTitre {
@@ -42,7 +67,7 @@
 .headerDate {
     margin: 0%;
     color: $sub1_color;
-    font-family: 'Asap', sans-serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     font-weight: 700;
     font-size: 25px;
 }

@@ -28,6 +28,7 @@ export async function getServerSideProps(context) {
 
   let txt = await simpleApi("textes/" + id + "?populate=*")
 
+  // Contenu
   var md = require('markdown-it')();
   let contenu = md.render(txt.result.data.attributes.Contenu);
 
@@ -89,7 +90,7 @@ export default function Texte({texte, content, notFound}){
                 <title>Collectif SPTS: {texte.result.data.attributes.Titre}</title>
                 <meta property="og:title" content="Collectif SPTS: Textes" />
                 <meta property="og:url" content="https://collectifspts.org/textes/" />
-                <meta property="og:image" content="/thumbnails/appuis.jpg" />
+                <meta property="og:image" content="" />
                 <meta property="og:type" content="article" />
                 <meta property="og:description" content="Organismes qui appuient la salarisation" />
                 <link rel="icon" href="/favicon.ico" />
@@ -97,7 +98,6 @@ export default function Texte({texte, content, notFound}){
               </Head>
       
               <main className={styles.main}>
-  
   
                 <header className='header_subsections_center'>
                 <Navbar/>
@@ -117,7 +117,7 @@ export default function Texte({texte, content, notFound}){
                       </ul>
                   </h5>
                   </section>
-      
+                  <div className={styles.coverImg} style={{ backgroundImage: `url(${"https://api.collectifspts.org"+ texte.result.data.attributes.Cover.data.attributes.url})` }}></div>
           <section id='texteContenu' className={styles.leTexte} dangerouslySetInnerHTML={content}>
           </section>      
       
