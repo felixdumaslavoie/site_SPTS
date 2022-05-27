@@ -7,6 +7,7 @@ import { useEffect } from 'react'
 import { simpleApi } from '../../lib/simpleApi'
 import  {useRouter } from 'next/router'
 import fr from 'date-and-time/locale/fr';
+import { NextSeo } from 'next-seo';
 
 export async function getServerSideProps(context) {
   const { idTexte } = context.query;
@@ -68,13 +69,14 @@ export async function getServerSideProps(context) {
     props: {
       texte: txt,
       content: contenu,
-      date: laDate
+      date: laDate,
+      url: idTexte 
     }
     
   };
 }
 
-export default function Texte({texte, content, date, notFound}){
+export default function Texte({texte, content, date, url, notFound}){
     const router = useRouter()
     var Logo = undefined;
     var endOfDocumentTop = undefined;
@@ -119,13 +121,24 @@ export default function Texte({texte, content, date, notFound}){
             <div className={styles.container}>
               <Head>
                 <title>Collectif SPTS: {texte.result.data.attributes.Titre}</title>
-                <meta property="og:title" content="Collectif SPTS: Textes" />
-                <meta property="og:url" content="https://collectifspts.org/textes/" />
-                <meta property="og:image" content="" />
-                <meta property="og:type" content="article" />
-                <meta property="og:description" content="Organismes qui appuient la salarisation" />
-                <link rel="icon" href="/favicon.ico" />
-                <meta name="description" content="Collectif un salaire pour toustes les stagiaires" />
+                <NextSeo
+                    openGraph={{
+                      type: 'article',
+                      url: 'https://collectifspts.org/textes/' + url,
+                      title: 'Collectif SPTS: texte ' + texte.result.data.attributes.Titre,
+                      description: texte.result.data.attributes.Description,
+                      images: [
+                        {
+                          url: "https://api.collectifspts.org" + texte.result.data.attributes.Cover.data.attributes.url,
+                          width: 800,
+                          height: 600,
+                          alt: texte.result.data.attributes.Titre,
+                        },
+                      ],
+                    }}
+              />                
+              <link rel="icon" href="/favicon.ico" />
+
               </Head>
       
               <main className={styles.main}>
