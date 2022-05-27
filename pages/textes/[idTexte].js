@@ -2,6 +2,7 @@ import Head from 'next/head'
 import styles from '../../styles/textes.module.scss'
 import Navbar from '../../comps/Navbar'
 import Footer from '../../comps/Footer'
+import ScrollButton from '../../comps/scrollTop'
 import { useEffect } from 'react'
 import { simpleApi } from '../../lib/simpleApi'
 import  {useRouter } from 'next/router'
@@ -66,7 +67,7 @@ export default function Texte({texte, content, notFound}){
         endOfDocumentTop = 0;
         size = 0;
       }
-      
+
       let select = document.getElementById("id_textes");
       select.classList.add("selected");
   
@@ -120,8 +121,8 @@ export default function Texte({texte, content, notFound}){
                   <div className={styles.coverImg} style={{ backgroundImage: `url(${"https://api.collectifspts.org"+ texte.result.data.attributes.Cover.data.attributes.url})` }}></div>
           <section id='texteContenu' className={styles.leTexte} dangerouslySetInnerHTML={content}>
           </section>      
-      
-      
+    
+              <ScrollButton/>   
               </main>
   
               <Footer/>
