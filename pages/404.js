@@ -5,7 +5,7 @@ import { useEffect, useCallback } from 'react'
 import Navbar from '../comps/Navbar'
 import Footer from '../comps/Footer'
 
-export default function Textes(){
+export default function DefaultErrorPage(){
   var Logo = undefined;
   var endOfDocumentTop = undefined;
   var size = undefined;

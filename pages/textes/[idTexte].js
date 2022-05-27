@@ -9,6 +9,7 @@ import  {useRouter } from 'next/router'
 import fr from 'date-and-time/locale/fr';
 import { NextSeo } from 'next-seo';
 
+
 export async function getServerSideProps(context) {
   const { idTexte } = context.query;
 
@@ -76,20 +77,20 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default function Texte({texte, content, date, url, notFound}){
+export default function Texte({texte, content, date, url}){
     const router = useRouter()
     var Logo = undefined;
     var endOfDocumentTop = undefined;
     var size = undefined;
     
-    if (notFound) {
+    /*if (notFound) {
       return <>
       <Head>
         <meta name="robots" content="noindex"/>
       </Head>
       <DefaultErrorPage statusCode={404} />
     </>
-    }
+    }*/
   
     useEffect(() => {
       window.$ = window.jQuery = require('jquery');
