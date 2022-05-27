@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useEffect } from 'react'
 import Navbar from '../../comps/Navbar'
 import Footer from '../../comps/Footer'
+import ScrollButton from '../../comps/scrollTop'
 
 export default function Archives() {
   var Logo = undefined;
@@ -123,7 +124,7 @@ export default function Archives() {
         </ul>
       </section>
 
-       
+      <ScrollButton/>   
       </main>
 
       <Footer/>
