@@ -6,7 +6,7 @@ import ScrollButton from '../../comps/scrollTop'
 import { useEffect } from 'react'
 import { simpleApi } from '../../lib/simpleApi'
 import  {useRouter } from 'next/router'
-
+import fr from 'date-and-time/locale/fr';
 
 export async function getServerSideProps(context) {
   const { idTexte } = context.query;
@@ -31,6 +31,13 @@ export async function getServerSideProps(context) {
 
   // Contenu
   var md = require('markdown-it')();
+  var date = require('date-and-time');
+
+  date.locale(fr);
+  
+  const publie = new Date(txt.result.data.attributes.Date);
+  let laDate = date.format(publie, 'dddd D MMMM YYYY'); 
+
   let contenu = md.render(txt.result.data.attributes.Contenu);
 
   contenu = {__html: contenu};
@@ -38,13 +45,14 @@ export async function getServerSideProps(context) {
   return {
     props: {
       texte: txt,
-      content: contenu
+      content: contenu,
+      date: laDate
     }
     
   };
 }
 
-export default function Texte({texte, content, notFound}){
+export default function Texte({texte, content, date, notFound}){
     const router = useRouter()
     var Logo = undefined;
     var endOfDocumentTop = undefined;
@@ -103,8 +111,9 @@ export default function Texte({texte, content, notFound}){
                 <header className='header_subsections_center'>
                 <Navbar/>
                   <h1 id='txtTitre' className={styles.headerTitre}>
-                    <span className='detail_color'>{texte.result.data.attributes.Titre}</span>
+                    <span className='nice_color'>{texte.result.data.attributes.Titre}</span>
                   </h1>
+                  <div className={styles.date}>Publié le {date}</div>
                 </header>
                   <section className={styles.autrices}>
                   <h5>
@@ -118,6 +127,7 @@ export default function Texte({texte, content, notFound}){
                       </ul>
                   </h5>
                   </section>
+                  
                   <div className={styles.coverImg} style={{ backgroundImage: `url(${"https://api.collectifspts.org"+ texte.result.data.attributes.Cover.data.attributes.url})` }}></div>
           <section id='texteContenu' className={styles.leTexte} dangerouslySetInnerHTML={content}>
           </section>      

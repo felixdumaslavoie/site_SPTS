@@ -6,12 +6,22 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
   height: 400px;
-  margin: 60px 0;
-  margin-bottom: 0;
+  margin: 0;
 }
 .section p {
   margin: 0   2em;
+}
+
+.date {
+    color: $sub1_color;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    font-family: Asap,sans-serif;
+    font-weight: 700;
+    font-size: 25px;
 }
 
 .leTexte {
@@ -77,6 +87,7 @@
 header {
   &.header_subsection_center {
     padding: 25px 4em;
+    padding-bottom: 5px;
   }
 }
 
@@ -93,7 +104,11 @@ header {
 }
 
 .autrices {
-    padding: 0;
+  @keyframes swing-in-top-fwd{0%{transform:rotateX(-100deg);transform-origin:top;opacity:0}100%{transform:rotateX(0deg);transform-origin:top;opacity:1}}
+  animation:swing-in-top-fwd 2s cubic-bezier(.175,.885,.32,1.275) both;
+
+    padding-bottom: 30px;
+    padding-top: 0;
     h5 {
         margin: 0;
         margin-top: 15px;
@@ -122,7 +137,7 @@ header {
         background-color: #3e3e3e;
         width: 30%;
         height: 3px;
-        bottom: -15px;
+        bottom: 20px;
         left: 50%;
         -webkit-animation: superBorder 1s cubic-bezier(0.215, 0.61, 0.355, 1) both;
         animation: superBorder 1s cubic-bezier(0.215, 0.61, 0.355, 1) both;
