@@ -122,24 +122,13 @@ export default function Texte({texte, content, date, url}){
             <div className={styles.container}>
               <Head>
                 <title>Collectif SPTS: {texte.result.data.attributes.Titre}</title>
-                <NextSeo
-                    openGraph={{
-                      type: 'article',
-                      url: 'https://collectifspts.org/textes/' + url,
-                      title: 'Collectif SPTS: texte ' + texte.result.data.attributes.Titre,
-                      description: texte.result.data.attributes.Description,
-                      images: [
-                        {
-                          url: "https://api.collectifspts.org" + texte.result.data.attributes.Cover.data.attributes.url,
-                          width: 800,
-                          height: 600,
-                          alt: texte.result.data.attributes.Titre,
-                        },
-                      ],
-                    }}
-              />                
-              <link rel="icon" href="/favicon.ico" />
-
+                <meta name="description" content={` ${texte.result.data.attributes.Description}`} />
+                <meta property="og:title" content={`Collectif SPTS: texte  ${ texte.result.data.attributes.Titre }`} />
+                <meta property="og:type" content="article"/>
+                <meta property="og:image" content={`"https://api.collectifspts.org"${texte.result.data.attributes.Cover.data.attributes.url}`}/>
+                <meta property="og:image:width" content="1200"/>
+                <meta property="og:image:height" content="630"/>       
+                <link rel="icon" href="/favicon.ico" />
               </Head>
       
               <main className={styles.main}>
