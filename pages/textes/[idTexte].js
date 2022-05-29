@@ -128,7 +128,7 @@ export default function Texte({texte, content, date, url}){
                 <meta property="og:image" content={`https://api.collectifspts.org${texte.result.data.attributes.Cover.data.attributes.url}`}/>
                 <meta property="og:image:height" content="630"/>       
                 <meta property="og:image:width" content="1200"/>
-                <meta property="og:url" content={`https://api.collectifspts.org/textes/${url}`}/>
+                <meta property="og:url" content={`https://collectifspts.org/textes/${url}`}/>
                 <link rel="icon" href="/favicon.ico" />
               </Head>
       
