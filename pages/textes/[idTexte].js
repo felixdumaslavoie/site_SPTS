@@ -7,8 +7,6 @@ import { useEffect } from 'react'
 import { simpleApi } from '../../lib/simpleApi'
 import  {useRouter } from 'next/router'
 import fr from 'date-and-time/locale/fr';
-import { NextSeo } from 'next-seo';
-
 
 export async function getServerSideProps(context) {
   const { idTexte } = context.query;
@@ -119,15 +117,18 @@ export default function Texte({texte, content, date, url}){
      
       return (
           <>
+          {console.log(url)}
             <div className={styles.container}>
               <Head>
                 <title>Collectif SPTS: {texte.result.data.attributes.Titre}</title>
                 <meta name="description" content={` ${texte.result.data.attributes.Description}`} />
                 <meta property="og:title" content={`Collectif SPTS: ${ texte.result.data.attributes.Titre }`} />
+                <meta name="og:description" content={` ${texte.result.data.attributes.Description}`} />
                 <meta property="og:type" content="article"/>
                 <meta property="og:image" content={`https://api.collectifspts.org${texte.result.data.attributes.Cover.data.attributes.url}`}/>
                 <meta property="og:image:height" content="630"/>       
                 <meta property="og:image:width" content="1200"/>
+                <meta property="og:url" content={`https://api.collectifspts.org/textes/${url}`}/>
                 <link rel="icon" href="/favicon.ico" />
               </Head>
       
