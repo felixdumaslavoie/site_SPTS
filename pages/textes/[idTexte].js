@@ -117,6 +117,7 @@ export default function Texte({texte, content, date, url}){
      
       return (
           <>
+          {console.log(url)}
             <div className={styles.container}>
               <Head>
                 <title>Collectif SPTS: {texte.result.data.attributes.Titre}</title>
