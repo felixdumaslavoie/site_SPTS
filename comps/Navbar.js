@@ -1,27 +1,8 @@
 import Link from 'next/link'
-import {useEffect} from "react";
 
 const Navbar = () => {
-
-    useEffect(() => {
-      
-     
-      document.getElementsByClassName("hamburger-icon").onclick = function() {
-        document.getElementsByClassName("hamburger-icon").classList.toggle("change");
-        console.log("FMLFML")
-      }  
-    })
-
-  
     return (
         <nav className='mainMenu' id='navbar'>
-        <div className='background-burger'></div>
-        <div className="hamburger-icon" id="icon">
-            <div className="bar bar1"></div>
-            <div className="bar bar2"></div>
-            <div className="bar bar3"></div>
-            <div className="clear"></div>
-        </div>
         <ul>
           <li><Link href="/"><a><div id='logo'></div></a></Link></li>
           <li className='detail_color'>
