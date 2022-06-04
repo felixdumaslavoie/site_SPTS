@@ -1,6 +1,8 @@
 import Link from 'next/link'
+import { useState } from 'react';
 
 const Navbar = () => {
+    const [open, setOpen] = useState(false);
     return (
         <nav className='mainMenu' id='navbar'>
         <ul>

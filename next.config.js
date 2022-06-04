@@ -5,7 +5,10 @@ const nextConfig = {
   images: {
     loader: "default",
     domains: ['api.collectifspts.org']
-  }
+  },
+  compiler: {
+    styledComponents: true,
+  },
 }
 
 module.exports = nextConfig
