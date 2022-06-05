@@ -1,12 +1,16 @@
 import Link from 'next/link'
-import { useState } from 'react';
+import Burger from '../comps/Burger'
+import Menu from './MenuBurger'
+import { useState, useRef  } from 'react';
 
 const Navbar = () => {
     const [open, setOpen] = useState(false);
+    const node = useRef();
+
     return (
         <nav className='mainMenu' id='navbar'>
         <ul>
-          <li><Link href="/"><a><div id='logo'></div></a></Link></li>
+          <li className='leLogo'><Link href="/"><a><div id='logo'></div></a></Link></li>
           <li className='detail_color'>
             <Link href="/textes">
               <a id='id_textes'>Textes</a>
@@ -30,6 +34,12 @@ const Navbar = () => {
           <li className='detail_color'><Link href="/contact">
             <a id='id_contact'>Contact</a>
           </Link></li>
+          <li  className="menuHamburg">
+            <div ref={node}>
+            <Burger open={open} setOpen={setOpen} />
+            <Menu open={open} setOpen={setOpen} />
+            </div>
+          </li>
         </ul>
       </nav>
 

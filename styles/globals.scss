@@ -292,3 +292,30 @@ footer {
     text-justify: inter-word;
   }
 }
+
+@media screen and (max-width: 1200px) 
+{
+  .mainMenu {
+    height: 85px;
+
+    #logo.smallLogo {
+      top: -13px;
+    }
+
+    ul {
+      justify-content: left;
+    }
+    ul li {
+      display: none;
+    }
+    .leLogo, .menuHamburg {
+      display: block;
+
+      ul li {
+        display: block;
+      }
+    }
+  }
+
+
+}
