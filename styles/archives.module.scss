@@ -2,9 +2,7 @@
 
 
 .archivesCutes {
-  background-color: lightgrey;
   width: auto;
-  border: 15px solid $nice_color;
   padding: 20px 100px;
   margin: 20px;
 
@@ -54,9 +52,7 @@
 
 
 .archivesDissidentes {
-  background-color: lightgrey;
   width: auto;
-  border: 15px solid $nice_color;
   padding: 20px 100px;
   margin: 20px;
 
@@ -96,9 +92,7 @@
 }
 
 .archivesVideos {
-  background-color: lightgrey;
   width: auto;
-  border: 15px solid $nice_color;
   padding: 20px 100px;
   margin: 20px;
 
@@ -210,3 +204,9 @@
   }
   
   
+@media screen and (max-width: 1200px) {
+  .archivesCutes, .archivesDissidentes, .archivesVideos {
+    margin: unset;
+  }
+
+}

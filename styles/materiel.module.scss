@@ -1,6 +1,25 @@
 @import "mixins";
 
 
+
+.materiel {
+  color: $nice_color;
+  ul 
+  {
+    display: flex;
+    flex-direction: column-reverse;
+    li {
+      list-style: none;
+      span {
+        color: black;
+        font-size: large;
+        margin-left: 20px;
+      }
+    }
+  }
+
+}
+
 .container {
     background-image: url(../public/textureFabric.png);
 }

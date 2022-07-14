@@ -3,8 +3,30 @@ import styles from '../../styles/materiel.module.scss'
 import { useEffect } from 'react'
 import Navbar from '../../comps/Navbar'
 import Footer from '../../comps/Footer'
+import { simpleApi } from '../../lib/simpleApi';
+import fr from 'date-and-time/locale/fr';
 
-export default function Materiel() {
+
+export async function getStaticProps() {
+
+  let quer = "materiels/?populate=*";
+
+  let materielRes = await simpleApi(quer);
+
+  
+
+  return {
+    props: {
+      materiel: materielRes.result
+    },
+    revalidate: 1,
+  };
+}
+
+
+
+
+export default function Materiel({materiel}) {
   var Logo = undefined;
   var endOfDocumentTop = undefined;
   var size = undefined;
@@ -39,7 +61,6 @@ export default function Materiel() {
 
   return (
     <>
-
     <div className={styles.container}>
       <Head>
         <title>Collectif SPTS: Matériel</title>
@@ -65,6 +86,13 @@ export default function Materiel() {
           Matériel produit par le <div className='header_underline'>collectif</div> 
         </h5>
         </header>
+
+        <section className={styles.materiel}>
+          <ul>
+           {materiel.data.map(i => 
+           <li key={i.id}><a href={'https://api.collectifspts.org' + i.attributes.Fichier.data[0].attributes.url} download target="_blank">{i.attributes.Nom}<span>{new Date(i.attributes.Fichier.data[0].attributes.updatedAt).toISOString().split('T')[0]}</span></a></li>) }
+          </ul>
+        </section>
 
         
        
