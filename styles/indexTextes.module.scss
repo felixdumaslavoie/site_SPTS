@@ -24,5 +24,14 @@
     li {
         list-style-type: none;
     }
+    input {
+        font-size: 20px;
+    }
+
+    span {
+        color: $sub1_color;
+        font-size: large;
+        margin-left: 20px;
+    }
 
 }

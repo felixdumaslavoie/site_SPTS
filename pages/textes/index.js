@@ -26,6 +26,26 @@ export default function Textes({textes}){
   var endOfDocumentTop = undefined;
   var size = undefined;
 
+
+  const filterFunction = () => {
+  // Declare variables
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById('myInput');
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName('li');
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < li.length; i++) {
+      a = li[i].getElementsByTagName("a")[0];
+      txtValue = a.textContent || a.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        li[i].style.display = "";
+      } else {
+        li[i].style.display = "none";
+      }
+    }
+  };
+
   useEffect(() => {
     window.$ = window.jQuery = require('jquery');
     
@@ -36,7 +56,7 @@ export default function Textes({textes}){
     }
 
     textes.forEach( txt => {
-        $("#listeTextes").append("<li><a href="+ "textes/" + txt.attributes.Url +">"+ txt.attributes.Titre +"</a></li>");
+        $("#listeTextes #myUL").append("<li><a href="+ "textes/" + txt.attributes.Url +">"+ txt.attributes.Titre +"<span>"+ txt.attributes.Date +"</span></a></li>");
       });
   
     
@@ -83,7 +103,9 @@ export default function Textes({textes}){
               </header>
     
               <section id='listeTextes' className={styles.listeTextes}>
-                <ul className='listeTxts'>
+               <input type="text" placeholder="Rechercher un texte..." id="myInput" onKeyUp={filterFunction}/>
+                <ul id='myUL' className='listeTxts'>
+                  
                 </ul>
               </section>
     
