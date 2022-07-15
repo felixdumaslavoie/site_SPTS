@@ -8,41 +8,63 @@ html,
 body {
   padding: 0;
   margin: 0;
-/* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;*/
-    font-family: DM Sans,sans-serif;
-    font-size: 1.6rem;
-    color: #fff;
-    line-height: 1.5;
+  font-family: DM Sans, sans-serif;
+  font-size: 1.6rem;
+  color: #fff;
+  line-height: 1.5;
 }
 
 #logo {
-    position: relative;
-    width: 200px;
-    height: 185px;
-    background-image: url(/logo.png);
-    background-size: cover;
-    left: 0;
-    top: -30px;
-    z-index: 0;
+  position: relative;
+  width: 200px;
+  height: 185px;
+  background-image: url(/logo.png);
+  background-size: cover;
+  left: 0;
+  top: -30px;
+  z-index: 0;
 
-    @keyframes scale-up-top{0%{transform:scale(.5);transform-origin:50% 0}100%{transform:scale(1);transform-origin:50% 0}}
-    &.apparition {
-      animation:scale-up-top .4s cubic-bezier(.39,.575,.565,1.000) both;
-    }
-    
-    &.largeLogo {
-      animation:scale-up-top .4s cubic-bezier(.39,.575,.565,1.000) both;
-    }
-    
-    &.smallLogo {
-      @keyframes scale-down-top{0%{transform:scale(1);transform-origin:50% 0}100%{transform:scale(.5);transform-origin:50% 0}}
-      animation:scale-down-top .4s cubic-bezier(.25,.46,.45,.94) both;
+  @keyframes scale-up-top {
+    0% {
+      transform: scale(.5);
+      transform-origin: 50% 0
     }
 
-    &.d-none {
-      display: none;
+    100% {
+      transform: scale(1);
+      transform-origin: 50% 0
     }
+  }
+
+  &.apparition {
+    animation: scale-up-top .4s cubic-bezier(.39, .575, .565, 1.000) both;
+  }
+
+  &.largeLogo {
+    animation: scale-up-top .4s cubic-bezier(.39, .575, .565, 1.000) both;
+  }
+
+  &.smallLogo {
+    @keyframes scale-down-top {
+      0% {
+        transform: scale(1);
+        transform-origin: 50% 0
+      }
+
+      100% {
+        transform: scale(.5);
+        transform-origin: 50% 0
+      }
+    }
+
+    animation:scale-down-top .4s cubic-bezier(.25, .46, .45, .94) both;
+  }
+
+  &.d-none {
+    display: none;
+  }
 
 }
 
@@ -54,10 +76,39 @@ body {
   top: 0;
   left: 0;
   background-image: url('../public/textureWebMixed.png');
-  @keyframes wobble-hor-bottom{0%,100%{transform:translateX(0);transform-origin:50% 50%}15%{transform:translateX(-30px) rotate(-6deg)}30%{transform:translateX(15px) rotate(6deg)}45%{transform:translateX(-15px) rotate(-3.6deg)}60%{transform:translateX(9px) rotate(2.4deg)}75%{transform:translateX(-6px) rotate(-1.2deg)}}
+
+  @keyframes wobble-hor-bottom {
+
+    0%,
+    100% {
+      transform: translateX(0);
+      transform-origin: 50% 50%
+    }
+
+    15% {
+      transform: translateX(-30px) rotate(-6deg)
+    }
+
+    30% {
+      transform: translateX(15px) rotate(6deg)
+    }
+
+    45% {
+      transform: translateX(-15px) rotate(-3.6deg)
+    }
+
+    60% {
+      transform: translateX(9px) rotate(2.4deg)
+    }
+
+    75% {
+      transform: translateX(-6px) rotate(-1.2deg)
+    }
+  }
+
   animation:wobble-hor-bottom 2.5s both;
   animation-delay: 60s;
-  
+
   ul {
     padding: 0;
     padding-top: 3px;
@@ -71,26 +122,26 @@ body {
     list-style-type: none;
     margin: 0;
     height: 20px;
-    
+
     li {
       cursor: pointer;
       margin: 0 20px;
-
+      
       a {
-        display: contents;
         opacity: 0.95;
         text-decoration: underline 0.15em rgba(255, 255, 255, 0);
         transition: text-decoration-color 250ms;
-        
+
         &.selected {
           text-decoration: underline 0.15em;
         }
       }
-      
-      a:hover, a:focus {
+
+      a:hover,
+      a:focus {
         opacity: 1;
         text-decoration-color: $sub1_color;
-        
+
       }
     }
   }
@@ -98,14 +149,36 @@ body {
 
 
 #navbar {
-  @keyframes slide-in-top{0%{transform:translateY(-1000px);opacity:0}100%{transform:translateY(0);opacity:1}}
-  @keyframes slide-out-top{0%{transform:translateY(0);opacity:1}100%{transform:translateY(-1000px);opacity:0}}
+  @keyframes slide-in-top {
+    0% {
+      transform: translateY(-1000px);
+      opacity: 0
+    }
+
+    100% {
+      transform: translateY(0);
+      opacity: 1
+    }
+  }
+
+  @keyframes slide-out-top {
+    0% {
+      transform: translateY(0);
+      opacity: 1
+    }
+
+    100% {
+      transform: translateY(-1000px);
+      opacity: 0
+    }
+  }
 
   &.special {
-    animation:slide-in-top .5s cubic-bezier(.25,.46,.45,.94) both;
+    animation: slide-in-top .5s cubic-bezier(.25, .46, .45, .94) both;
   }
+
   &.hide {
-    animation:slide-out-top .5s cubic-bezier(.55,.085,.68,.53) both;
+    animation: slide-out-top .5s cubic-bezier(.55, .085, .68, .53) both;
   }
 }
 
@@ -116,25 +189,51 @@ header {
   position: relative;
 
   &:after {
-    content:'';
+    content: '';
     position: absolute;
     background-color: $sub1_color;
     width: 30%;
     height: 3px;
     bottom: 0;
     left: 50%;
-    @keyframes superBorder { 0% { width: 0; } 100% { width: 30%; } }
-    animation: superBorder 3s cubic-bezier(.215,.61,.355,1.000) both;
+
+    @keyframes superBorder {
+      0% {
+        width: 0;
+      }
+
+      100% {
+        width: 30%;
+      }
+    }
+
+    animation: superBorder 3s cubic-bezier(.215, .61, .355, 1.000) both;
     transform: translate(-50%, -50%);
   }
+
   h1 {
     font-family: 'Asap', sans-serif;
     font-weight: 700;
     color: $base_color;
     font-size: 6.6vw;
     line-height: 1;
-    @keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}
-    animation:tracking-in-expand 1s cubic-bezier(.215,.61,.355,1.000) both;
+
+    @keyframes tracking-in-expand {
+      0% {
+        letter-spacing: -.5em;
+        opacity: 0
+      }
+
+      40% {
+        opacity: .6
+      }
+
+      100% {
+        opacity: 1
+      }
+    }
+
+    animation:tracking-in-expand 1s cubic-bezier(.215, .61, .355, 1.000) both;
 
     &.headerh1blue {
       color: $nice_color;
@@ -144,12 +243,27 @@ header {
       color: $detail_color;
     }
   }
-  h3, h5 {
+
+  h3,
+  h5 {
     color: $sub1_color;
     font-family: 'texGyre', sans-serif;
     margin: 0;
-    @keyframes focus-in-contract{0%{letter-spacing:0.2em;filter:blur(12px);opacity:0}100%{filter:blur(0);opacity:1}}
-    animation: focus-in-contract .7s cubic-bezier(.25,.46,.45,.94) both;
+
+    @keyframes focus-in-contract {
+      0% {
+        letter-spacing: 0.2em;
+        filter: blur(12px);
+        opacity: 0
+      }
+
+      100% {
+        filter: blur(0);
+        opacity: 1
+      }
+    }
+
+    animation: focus-in-contract .7s cubic-bezier(.25, .46, .45, .94) both;
   }
 
   &.header_subsections {
@@ -161,7 +275,7 @@ header {
       margin: 8px 0;
     }
 
-    &:after { 
+    &:after {
       left: auto;
       transform: none;
     }
@@ -178,7 +292,7 @@ header {
     }
 
     &:after {
-      left: auto; 
+      left: auto;
       right: 4em;
       transform: none;
     }
@@ -195,11 +309,11 @@ header {
     }
   }
 
-  
+
   .header_underline {
     display: inline-block;
     position: relative;
-    
+
     &:after {
       content: '';
       position: absolute;
@@ -212,6 +326,7 @@ header {
       transform-origin: bottom right;
       transition: transform 0.25s ease-out;
     }
+
     &:hover:after {
       transform: scaleX(1);
       transform-origin: bottom left;
@@ -227,8 +342,24 @@ header {
 section {
   padding: 40px 0;
 
-  @keyframes tracking-in-contract-bck-bottom{0%{letter-spacing:1em;transform:translateZ(400px) translateY(300px);opacity:0}40%{opacity:.6}100%{transform:translateZ(0) translateY(0);opacity:1}}
-  animation:tracking-in-contract-bck-bottom 1s cubic-bezier(.215,.61,.355,1.000) both;
+  @keyframes tracking-in-contract-bck-bottom {
+    0% {
+      letter-spacing: 1em;
+      transform: translateZ(400px) translateY(300px);
+      opacity: 0
+    }
+
+    40% {
+      opacity: .6
+    }
+
+    100% {
+      transform: translateZ(0) translateY(0);
+      opacity: 1
+    }
+  }
+
+  animation:tracking-in-contract-bck-bottom 1s cubic-bezier(.215, .61, .355, 1.000) both;
   animation-delay: 0.5s;
 
   p {
@@ -278,25 +409,25 @@ footer {
 
     li {
       margin-right: 20px;
+
       span {
         color: $sub1_color;
       }
     }
-    
+
   }
 
 
   a {
     color: $sub1_color;
     font-family: 'texGyre', sans-serif;
-    font-size: 15px;  
+    font-size: 15px;
     text-align: justify;
     text-justify: inter-word;
   }
 }
 
-@media screen and (max-width: 1200px) 
-{
+@media screen and (max-width: 1200px) {
   .mainMenu {
     height: 85px;
 
@@ -307,10 +438,13 @@ footer {
     ul {
       justify-content: left;
     }
+
     ul li {
       display: none;
     }
-    .leLogo, .menuHamburg {
+
+    .leLogo,
+    .menuHamburg {
       display: block;
 
       ul li {
